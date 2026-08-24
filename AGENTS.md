@@ -4,7 +4,7 @@ Native Frappe app on ERPNext. Atlas-3 (`D:\work Dir\Atlas 3`) is the product sou
 
 **New Grok Build / CLI session:** paste `docs/GROK_BUILD.md` (the fenced prompt) as the first message.
 
-**CEO Command dashboard session:** also paste `docs/GROK_BUILD_COMMAND.md` (P0 shell first).
+**CEO Command dashboard session:** also paste `docs/GROK_BUILD_COMMAND.md`.
 
 ## Always load
 
@@ -13,13 +13,14 @@ Native Frappe app on ERPNext. Atlas-3 (`D:\work Dir\Atlas 3`) is the product sou
 - ERPNext **version-16** (ADR 0008). `extend_doctype_class`, not `override_doctype_class`.
 - Money contract: `docs/research/02-booking-sales-order-gst.md`, `docs/research/03-commission-tds.md`, `docs/research/06-payment-schedule-gst.md`.
 - Command (CEO): `docs/modules/command.md`
+- Booking: `docs/modules/booking.md`
 
 ## When designing or changing a DocType
 
 1. Prefer an ERPNext object. Custom only when Atlas-3 has logic ERPNext does not provide.
 2. Map every field, status, and server rule back to Atlas-3 acceptance (`docs/sales/PHASES.md` in Atlas-3, copied into `docs/modules/*` here).
 3. Company isolation, unit lock, commission accrual, and four-eyes are first-class.
-4. Write the rule in a deep module (`property_inventory.lock`, `approvals.queue`, `books.payment_gst`) and keep the controller thin.
+4. Write the rule in a deep module (`property_inventory.lock`, `approvals.queue`, `books.payment_gst`, `booking.plan`) and keep the controller thin.
 
 ## Invariants (never break)
 
