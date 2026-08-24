@@ -1,0 +1,111 @@
+{
+  "actions": [],
+  "allow_rename": 0,
+  "autoname": "naming_series:",
+  "creation": "2026-08-25 00:00:00",
+  "doctype": "DocType",
+  "engine": "InnoDB",
+  "field_order": [
+    "naming_series",
+    "project",
+    "diary_date",
+    "device_key",
+    "weather",
+    "labour",
+    "work",
+    "materials",
+    "safety",
+    "author",
+    "seal_key"
+  ],
+  "fields": [
+    {
+      "fieldname": "naming_series",
+      "fieldtype": "Select",
+      "hidden": 1,
+      "label": "Series",
+      "options": "ASY-.#####"
+    },
+    {
+      "fieldname": "project",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "in_standard_filter": 1,
+      "label": "Project",
+      "options": "Project",
+      "reqd": 1
+    },
+    {
+      "fieldname": "diary_date",
+      "fieldtype": "Date",
+      "in_list_view": 1,
+      "in_standard_filter": 1,
+      "label": "Date",
+      "reqd": 1
+    },
+    {
+      "fieldname": "device_key",
+      "fieldtype": "Data",
+      "label": "Device",
+      "reqd": 1
+    },
+    {
+      "fieldname": "weather",
+      "fieldtype": "Data",
+      "label": "Weather"
+    },
+    {
+      "default": "0",
+      "fieldname": "labour",
+      "fieldtype": "Int",
+      "in_list_view": 1,
+      "label": "Labour"
+    },
+    {
+      "fieldname": "work",
+      "fieldtype": "Small Text",
+      "label": "Work"
+    },
+    {
+      "fieldname": "materials",
+      "fieldtype": "Small Text",
+      "label": "Materials"
+    },
+    {
+      "fieldname": "safety",
+      "fieldtype": "Small Text",
+      "label": "Safety"
+    },
+    {
+      "fieldname": "author",
+      "fieldtype": "Link",
+      "label": "Author",
+      "options": "User",
+      "read_only": 1
+    },
+    {
+      "fieldname": "seal_key",
+      "fieldtype": "Data",
+      "hidden": 1,
+      "label": "Seal",
+      "no_copy": 1,
+      "read_only": 1,
+      "unique": 1
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "links": [],
+  "modified": "2026-08-25 00:00:00",
+  "module": "Site",
+  "name": "Atlas Site Diary",
+  "naming_rule": "By \"Naming Series\" field",
+  "owner": "Administrator",
+  "permissions": [
+    {"create": 1, "delete": 1, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "Atlas Developer Admin", "share": 1, "write": 1},
+    {"create": 1, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "Atlas Project Director", "share": 1, "write": 1},
+    {"create": 1, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "Atlas Site", "share": 1, "write": 1}
+  ],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "track_changes": 1
+}
