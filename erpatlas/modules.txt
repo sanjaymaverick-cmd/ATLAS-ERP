@@ -13,4 +13,6 @@ Controls
 Land Legal
 Organization
 Communications
+Capital
+Audit
 Command

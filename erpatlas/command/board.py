@@ -108,6 +108,11 @@ def get_command(company: str | None = None, project: str | None = None) -> dict:
 
 	payload["portfolio"] = _portfolio_facts()
 	payload["sparkline"] = sparkline(sparkline_booking_value())
+	from erpatlas.command.forecast import linear_outlook, narrative_brief
+
+	payload["outlook_30"] = linear_outlook(payload["sparkline"], horizon_days=30)
+	payload["outlook_90"] = linear_outlook(payload["sparkline"], horizon_days=90)
+	payload["brief"] = narrative_brief(payload)
 	return payload
 
 

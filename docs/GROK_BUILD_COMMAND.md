@@ -78,5 +78,5 @@ KPI Snapshot DocType, heat map, forecasts, board PDF — only after P0–P2 soli
 - Commit messages: what + why
 - PR against main describing P0 scope and screenshots/notes if Desk not available in CI
 
-P0–P3 are on `main`. When the user says go, implement **Command P4** (forecasts, read-only) or the next domain slice named. Do not invent Booking.
+P0–P4 are on `main`. When the user says go, implement **Command P5** (board-pack PDF) or the next domain slice named. Forecasts stay read-only. Do not invent Booking.
 ```

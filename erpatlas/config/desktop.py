@@ -74,6 +74,16 @@ def get_data():
 			"label": _("WhatsApp templates"),
 		},
 		{
+			"module_name": "Capital",
+			"type": "module",
+			"label": _("Capital"),
+		},
+		{
+			"module_name": "Audit",
+			"type": "module",
+			"label": _("Audit"),
+		},
+		{
 			"module_name": "Command",
 			"type": "module",
 			"label": _("Command"),

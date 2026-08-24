@@ -128,6 +128,18 @@ atlas.CommandBoard = class CommandBoard {
 						}
 					</div>
 				</section>`;
+		const o30 = data.outlook_30 || {};
+		const o90 = data.outlook_90 || {};
+		const brief = data.brief || [];
+		const outlook_html = `<section class="atlas-command-strip">
+					<h3>${__("Outlook")}</h3>
+					<p class="text-muted">${__("Linear read-only forecast from snapshots ({0}). Not CatBoost. Does not pay, lock, or decide.", [o30.model_id || "linear-snapshot"])}</p>
+					<div class="atlas-command-kpis">
+						${kpi(__("30d booking value"), inr(o30.projected))}
+						${kpi(__("90d booking value"), inr(o90.projected))}
+					</div>
+					${brief.map((line) => `<p>${frappe.utils.escape_html(line)}</p>`).join("")}
+				</section>`;
 		const money = data.money || {};
 		const money_html = data.shows_money
 			? `<section class="atlas-command-strip">
@@ -158,6 +170,7 @@ atlas.CommandBoard = class CommandBoard {
 				</section>
 				${risk_html}
 				${heat_html}
+				${outlook_html}
 				${money_html}
 				<section class="atlas-command-strip">
 					<h3>${__("Inventory and holds")}</h3>
