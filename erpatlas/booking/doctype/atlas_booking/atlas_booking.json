@@ -1,0 +1,189 @@
+{
+  "actions": [],
+  "allow_rename": 0,
+  "autoname": "naming_series:",
+  "creation": "2026-08-24 18:00:00",
+  "doctype": "DocType",
+  "engine": "InnoDB",
+  "field_order": [
+    "naming_series",
+    "project",
+    "company",
+    "unit",
+    "hold",
+    "customer",
+    "customer_name",
+    "channel_company",
+    "agent",
+    "total_consideration",
+    "collected",
+    "tax_included",
+    "gst_policy",
+    "gst_rate",
+    "status",
+    "sales_order",
+    "commission",
+    "live_unit",
+    "payment_steps"
+  ],
+  "fields": [
+    {
+      "fieldname": "naming_series",
+      "fieldtype": "Select",
+      "hidden": 1,
+      "label": "Series",
+      "options": "ABK-.#####"
+    },
+    {
+      "fieldname": "project",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "in_standard_filter": 1,
+      "label": "Project",
+      "options": "Project",
+      "read_only": 1
+    },
+    {
+      "fieldname": "company",
+      "fieldtype": "Link",
+      "label": "Legal Entity",
+      "options": "Company",
+      "read_only": 1
+    },
+    {
+      "fieldname": "unit",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "in_standard_filter": 1,
+      "label": "Unit",
+      "options": "Atlas Unit",
+      "reqd": 1
+    },
+    {
+      "fieldname": "hold",
+      "fieldtype": "Link",
+      "label": "Hold",
+      "options": "Atlas Unit Hold"
+    },
+    {
+      "fieldname": "customer",
+      "fieldtype": "Link",
+      "label": "Customer",
+      "options": "Customer"
+    },
+    {
+      "fieldname": "customer_name",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "Customer name",
+      "reqd": 1
+    },
+    {
+      "fieldname": "channel_company",
+      "fieldtype": "Link",
+      "in_standard_filter": 1,
+      "label": "Channel Company",
+      "options": "Atlas Channel Company"
+    },
+    {
+      "fieldname": "agent",
+      "fieldtype": "Link",
+      "label": "Agent",
+      "options": "User"
+    },
+    {
+      "fieldname": "total_consideration",
+      "fieldtype": "Currency",
+      "in_list_view": 1,
+      "label": "Total consideration",
+      "reqd": 1
+    },
+    {
+      "default": "0",
+      "fieldname": "collected",
+      "fieldtype": "Currency",
+      "label": "Collected",
+      "read_only": 1
+    },
+    {
+      "default": "inclusive",
+      "fieldname": "tax_included",
+      "fieldtype": "Select",
+      "label": "Tax included",
+      "options": "inclusive\nexclusive"
+    },
+    {
+      "fieldname": "gst_policy",
+      "fieldtype": "Select",
+      "label": "GST policy",
+      "options": "\non_receipt\non_invoice\nnone"
+    },
+    {
+      "fieldname": "gst_rate",
+      "fieldtype": "Percent",
+      "label": "GST rate",
+      "read_only": 1
+    },
+    {
+      "default": "Draft",
+      "fieldname": "status",
+      "fieldtype": "Select",
+      "in_list_view": 1,
+      "in_standard_filter": 1,
+      "label": "Status",
+      "options": "Draft\nActive\nCancelled\nPossession",
+      "reqd": 1
+    },
+    {
+      "fieldname": "sales_order",
+      "fieldtype": "Link",
+      "label": "Sales Order",
+      "options": "Sales Order",
+      "read_only": 1
+    },
+    {
+      "fieldname": "commission",
+      "fieldtype": "Link",
+      "label": "Commission",
+      "options": "Atlas Commission",
+      "read_only": 1
+    },
+    {
+      "fieldname": "live_unit",
+      "fieldtype": "Data",
+      "hidden": 1,
+      "label": "Live unit",
+      "no_copy": 1,
+      "read_only": 1,
+      "unique": 1
+    },
+    {
+      "fieldname": "payment_steps",
+      "fieldtype": "Table",
+      "label": "Payment steps",
+      "options": "Atlas Booking Payment Step"
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "links": [
+    {"link_doctype": "Atlas Commission", "link_fieldname": "booking"},
+    {"link_doctype": "Sales Order", "link_fieldname": "atlas_booking"}
+  ],
+  "modified": "2026-08-24 18:00:00",
+  "module": "Booking",
+  "name": "Atlas Booking",
+  "naming_rule": "By \"Naming Series\" field",
+  "owner": "Administrator",
+  "permissions": [
+    {"create": 1, "delete": 1, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "Atlas Developer Admin", "share": 1, "write": 1},
+    {"create": 1, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "Atlas Project Director", "share": 1, "write": 1},
+    {"create": 1, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "Atlas Sales Manager", "share": 1, "write": 1},
+    {"email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "Atlas Finance", "write": 1},
+    {"email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "Atlas Channel Admin"},
+    {"email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "Atlas Channel Agent"}
+  ],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "title_field": "customer_name",
+  "track_changes": 1
+}

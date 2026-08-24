@@ -8,7 +8,7 @@ Atlas-3 Booking is operational (unit lock, partner, payment steps, handover, com
 
 | Object | System of record | Job |
 |---|---|---|
-| **Atlas Booking** (custom, not yet in repo) | ERPATLAS | One unit, one Customer, payment *plan*, possession gates, commission accrual trigger, handover case |
+| **Atlas Booking** (custom) | ERPATLAS | One unit, one Customer, payment *plan*, possession gates, commission accrual trigger, handover case |
 | **Sales Order** | ERPNext Selling | Customer + amount + taxes + Payment Schedule. Created when Booking becomes **Active** |
 | **Payment Entry** | ERPNext Accounts | Cash in. Against Customer, linked to Sales Order (advance) then allocated to Sales Invoice |
 | **Sales Invoice** | ERPNext Accounts | Revenue recognition / GST tax invoice. Raised on demand / milestone — **not** at hold, **not** at possession by default |

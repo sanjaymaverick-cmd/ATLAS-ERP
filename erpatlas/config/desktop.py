@@ -13,4 +13,9 @@ def get_data():
 			"type": "module",
 			"label": _("Waiting for a yes"),
 		},
+		{
+			"module_name": "Booking",
+			"type": "module",
+			"label": _("Bookings"),
+		},
 	]

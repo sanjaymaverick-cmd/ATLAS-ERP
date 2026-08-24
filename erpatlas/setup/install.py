@@ -27,6 +27,9 @@ def after_install():
 		frappe.get_doc({"doctype": "Atlas Settings", "md_bypass_four_eyes": 1, "default_hold_days": 7}).insert(
 			ignore_permissions=True
 		)
+	from erpatlas.setup.custom_fields import ensure_custom_fields
+
+	ensure_custom_fields()
 	_add_developer_admin_to_administrator()
 
 

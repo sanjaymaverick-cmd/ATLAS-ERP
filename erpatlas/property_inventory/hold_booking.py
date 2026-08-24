@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from erpatlas.approvals.queue import APPROVED, REJECTED
-from erpatlas.property_inventory.lock import BOOKED, HELD, HOLD_BOOKED, live_unit_key, refuse_book
+from erpatlas.property_inventory.lock import HELD
 
 
 def on_hold_booking(approval: dict, decision: str) -> str | None:
@@ -22,17 +22,10 @@ def on_hold_booking(approval: dict, decision: str) -> str | None:
 		return None
 	if hold.status != HELD:
 		return "Hold not active."
-	unit = frappe.get_doc("Atlas Unit", hold.unit)
-	err = refuse_book(status=unit.status, code=unit.code, live_booking=unit.status == BOOKED)
-	if err:
-		return err
-	from erpatlas.property_inventory.lock_adapter import try_set_status
+	from erpatlas.booking.activate import activate_from_hold
 
-	moved = try_set_status(unit.name, HELD, BOOKED, f"Hold booking {hold.name}")
-	if moved:
-		return moved
-	hold.status = HOLD_BOOKED
-	hold.booking_requested = 0
-	hold.live_unit = live_unit_key(status=HOLD_BOOKED, unit=hold.unit, hold_name=hold.name)
-	hold.save(ignore_permissions=True)
+	try:
+		activate_from_hold(hold_name, consideration=approval.get("amount") or hold.booking_value)
+	except frappe.ValidationError as e:
+		return str(e)
 	return None
