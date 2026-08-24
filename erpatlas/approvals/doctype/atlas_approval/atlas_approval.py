@@ -15,11 +15,14 @@ from erpatlas.approvals.queue import (
 def _ensure_handlers():
 	from erpatlas.approvals.queue import HANDLERS
 
-	if "Hold booking" in HANDLERS:
-		return
-	from erpatlas.property_inventory.hold_booking import on_hold_booking
+	if "Hold booking" not in HANDLERS:
+		from erpatlas.property_inventory.hold_booking import on_hold_booking
 
-	register_handler("Hold booking", on_hold_booking)
+		register_handler("Hold booking", on_hold_booking)
+	if "Commission" not in HANDLERS:
+		from erpatlas.booking.commission_handler import on_commission
+
+		register_handler("Commission", on_commission)
 
 
 class AtlasApproval(Document):

@@ -61,24 +61,21 @@ One system: custom Frappe app `erpatlas` on ERPNext version-16. Full Atlas-3 fea
 
 main: b187475 scaffold — Atlas Unit / Tower / Hold / Channel Company / Atlas Approval / lock CAS / unified queue.
 
-Branch research/money-isolation-v16 (PR https://github.com/sanjaymaverick-cmd/ATLAS-ERP/pull/1) also has:
-- ADR 0008 + docs/research/01–06
-- erpatlas/books/payment_gst.py (GST on-receipt default, inclusive/exclusive, last-step rounding)
-- hooks add_to_apps_screen + empty extend_doctype_class
-- pyproject requires-python 3.14
+Branch research/money-isolation-v16 (PR https://github.com/sanjaymaverick-cmd/ATLAS-ERP/pull/1): ADR 0008, research/01–06, payment_gst.py, add_to_apps_screen, requires-python 3.14.
 
-If that PR is not merged, checkout or rebase it before Booking work.
+Branch feature/atlas-booking (on top of that):
+- Atlas Booking + payment-step child + Atlas Commission (Accrued, no PE)
+- On Active: CAS unit → Booked, close Hold, submit Sales Order (non-stock ATLAS-UNIT, atlas_booking / atlas_unit)
+- Collect: next_unpaid + refuse_collect; on_receipt → SI then PE against SI; on_invoice / none → PE against SO
+- Channel hold→book still Approval kind Hold booking; handler calls activate_from_hold
+- Isolation: Channel may read units they held or booked
+- extend_doctype_class Sales Order mixin
 
 ## Next implementation slice (unless the user names another)
 
-Atlas Booking, following docs/research/02 and docs/research/06:
+Handover & Possession (OC + snags + full collection → unit Sold), or commission JE / TDS PI (research/03), or Channel daily-report gate / role fixtures (research/05).
 
-1. Custom Atlas Booking DocType + payment-step child table (labels, percents summing to 100).
-2. On Active: CAS unit → Booked, close Hold, create submitted Sales Order (non-stock Item, custom atlas_booking / atlas_unit), expand_schedule GST math, accrue Commission (status Accrued, no PE).
-3. Collect: next_unpaid + refuse_collect; on_receipt → Sales Invoice for the step then PE against SI; on_invoice / none → PE against SO.
-4. Channel hold→book still goes through Approval kind Hold booking (already wired).
-5. Isolation: Channel may read units they held or booked (see research/05 gap).
-6. Do not implement Handover, CatBoost, WhatsApp, Tally import, or RERA 70/30 in this slice.
+Do not implement CatBoost, WhatsApp, Tally import, or RERA 70/30 unless named.
 
 ## Language (do not mix)
 
@@ -94,5 +91,5 @@ Approval ≠ ERPNext Workflow.
 - Commit messages: what changed and why, Atlas-3 rule if any.
 - After code: pytest tests -q must pass.
 
-When the user says “go”, start Atlas Booking from the contracts above. If they ask a question, answer from these files first.
+When the user says “go”, start the next slice from the contracts above. If they ask a question, answer from these files first.
 ```
