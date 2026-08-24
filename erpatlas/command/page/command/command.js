@@ -148,6 +148,19 @@ atlas.CommandBoard = class CommandBoard {
 					</div>
 					${brief.map((line) => `<p>${frappe.utils.escape_html(line)}</p>`).join("")}
 				</section>`;
+		const cash = data.cash || {};
+		const cash_html = data.shows_cash
+			? `<section class="atlas-command-strip">
+					<h3>${__("Cash and runway")}</h3>
+					<p class="text-muted">${__("From ERPNext GL (Bank + Cash). Not a shadow ledger. Runway is cash ÷ 3-month average net outflow.")}</p>
+					<div class="atlas-command-kpis">
+						${kpi(__("Cash position"), inr(cash.cash_position))}
+						${kpi(__("Bank"), inr(cash.bank))}
+						${kpi(__("Cash"), inr(cash.cash))}
+						${kpi(__("Runway (months)"), cash.runway_months == null ? "—" : cash.runway_months)}
+					</div>
+				</section>`
+			: "";
 		const money = data.money || {};
 		const money_html = data.shows_money
 			? `<section class="atlas-command-strip">
@@ -179,6 +192,7 @@ atlas.CommandBoard = class CommandBoard {
 				${risk_html}
 				${heat_html}
 				${outlook_html}
+				${cash_html}
 				${money_html}
 				<section class="atlas-command-strip">
 					<h3>${__("Inventory and holds")}</h3>

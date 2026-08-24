@@ -46,6 +46,7 @@ def get_command(company: str | None = None, project: str | None = None) -> dict:
 			sla_days=int(thresholds["approval_sla_days"]),
 			hold_expiring_days=int(thresholds["hold_expiring_days"]),
 			thresholds=thresholds,
+			cash_board=gl_cash_facts(company),
 		)
 		empty["filters"] = {"company": company, "project": project}
 		return empty
@@ -101,6 +102,7 @@ def get_command(company: str | None = None, project: str | None = None) -> dict:
 		snags=snags,
 		vendors=vendors,
 		thresholds=thresholds,
+		cash_board=gl_cash_facts(company),
 	)
 	payload["filters"] = {"company": company, "project": project}
 	from erpatlas.command.snapshot import _portfolio_facts, sparkline_booking_value
@@ -230,3 +232,65 @@ def _booking_rows(project_names: set[str] | None) -> tuple[list, list, list, lis
 			if not pe.get("project"):
 				pe["project"] = project_of.get(pe.get("atlas_booking"))
 	return bookings, steps, payments, commissions
+
+
+def gl_cash_facts(company: str | None) -> dict | None:
+	"""Read Bank + Cash GL and 90-day expense net / 3. None if GL is not there — do not invent."""
+	if not company:
+		return None
+	if not frappe.db.exists("DocType", "GL Entry"):
+		return None
+	if not frappe.db.exists("DocType", "Account"):
+		return None
+	accounts = frappe.get_all(
+		"Account",
+		filters={"company": company, "account_type": ["in", ["Bank", "Cash"]], "is_group": 0},
+		fields=["name", "account_type"],
+	)
+	if not accounts:
+		return None
+	bank_names = [a.name for a in accounts if a.account_type == "Bank"]
+	cash_names = [a.name for a in accounts if a.account_type == "Cash"]
+	return {
+		"bank": _gl_balance(company, bank_names),
+		"cash": _gl_balance(company, cash_names),
+		"avg_monthly_outflow": _gl_avg_outflow(company),
+	}
+
+
+def _gl_balance(company: str, accounts: list[str]):
+	if not accounts:
+		return 0
+	row = frappe.db.sql(
+		"""
+		select coalesce(sum(debit), 0) - coalesce(sum(credit), 0)
+		from `tabGL Entry`
+		where account in %s and company = %s and ifnull(is_cancelled, 0) = 0
+		""",
+		(accounts, company),
+	)
+	return row[0][0] if row else 0
+
+
+def _gl_avg_outflow(company: str):
+	from frappe.utils import add_days
+
+	names = frappe.get_all(
+		"Account",
+		filters={"company": company, "root_type": "Expense", "is_group": 0},
+		pluck="name",
+	)
+	if not names:
+		return 0
+	start = add_days(today(), -90)
+	row = frappe.db.sql(
+		"""
+		select coalesce(sum(debit), 0) - coalesce(sum(credit), 0)
+		from `tabGL Entry`
+		where account in %s and company = %s and posting_date >= %s
+			and ifnull(is_cancelled, 0) = 0
+		""",
+		(names, company, start),
+	)
+	net = row[0][0] if row else 0
+	return float(net or 0) / 3

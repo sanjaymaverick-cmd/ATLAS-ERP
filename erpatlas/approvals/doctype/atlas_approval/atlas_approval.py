@@ -35,6 +35,14 @@ def _ensure_handlers():
 		from erpatlas.change_control.handler import on_change
 
 		register_handler("Change", on_change)
+	if "Payment" not in HANDLERS:
+		from erpatlas.booking.payment_handler import on_payment
+
+		register_handler("Payment", on_payment)
+	if "Purchase order" not in HANDLERS:
+		from erpatlas.commercial.po import on_purchase_order
+
+		register_handler("Purchase order", on_purchase_order)
 
 
 class AtlasApproval(Document):
@@ -78,9 +86,11 @@ def decide(name: str, decision: str):
 		frappe.throw(_(err))
 	payload = {
 		"kind": doc.kind,
+		"name": doc.name,
 		"ref_doctype": doc.ref_doctype,
 		"ref_name": doc.ref_name,
 		"amount": doc.amount,
+		"context": doc.context,
 	}
 	handler_err = run_handler(payload, decision)
 	if handler_err:

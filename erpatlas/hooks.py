@@ -27,6 +27,10 @@ fixtures = [
 
 atlas_has_today_report = ["erpatlas.channel.adapter.has_today_report"]
 
+doctype_js = {
+	"Purchase Order": "public/js/purchase_order.js",
+}
+
 export_python_type_annotations = True
 
 # Desk (Frappe v16)
@@ -57,6 +61,7 @@ scheduler_events = {
 doc_events = {
 	"Purchase Order": {
 		"validate": "erpatlas.commercial.gates.validate_vendor_active",
+		"before_submit": "erpatlas.commercial.gates.refuse_submit_without_approval",
 	},
 	"Payment Entry": {
 		"validate": "erpatlas.approvals.guards.refuse_commission_auto_pay",
@@ -74,6 +79,7 @@ permission_query_conditions = {
 	"Atlas Snag": "erpatlas.handover.permissions.snag_query",
 	"Atlas Daily Report": "erpatlas.channel.permissions.daily_report_query",
 	"Lead": "erpatlas.pipeline.permissions.lead_query",
+	"Atlas Channel Agent": "erpatlas.channel.permissions.agent_query",
 }
 
 has_permission = {

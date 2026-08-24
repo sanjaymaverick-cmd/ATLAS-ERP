@@ -6,4 +6,4 @@
 
 Whitelist: `erpatlas.quotations.award.award_lowest`
 
-Does not create a Payment Entry.
+A draft Purchase Order **Send for approval** raises kind `Purchase order`. Submit runs only after Approved. Does not create a Payment Entry.

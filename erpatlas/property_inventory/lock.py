@@ -66,6 +66,15 @@ def refuse_book(*, status: str | None, code: str, live_booking: bool) -> str | N
 	return None
 
 
+def refuse_exclusive_hold(*, exclusive_channel: str | None, hold_channel: str | None) -> str | None:
+	"""In-house (no channel) may still hold. Another Channel Company may not."""
+	if not exclusive_channel:
+		return None
+	if not hold_channel or hold_channel == exclusive_channel:
+		return None
+	return "This project is locked to one Channel Company."
+
+
 def refuse_hold_without_report(*, roles: Iterable[str], has_today_report: bool) -> str | None:
 	role_set = set(roles)
 	if not role_set & CHANNEL_ROLES:

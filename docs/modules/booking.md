@@ -74,7 +74,7 @@ Direct form edits of `status` are refused unless `frappe.flags.in_atlas_booking`
 
 1. `activate_booking` / `activate_from_hold` — `refuse_activate`; `expand_schedule`; CAS unit → Booked; close Hold; submit SO (`atlas_booking` / `atlas_unit`); accrue Commission.
 2. SO line: qty 1, non-stock Item `ATLAS-UNIT`. Rate = taxable if a Project tax template is set, else grand (inclusive cash total) so payment schedule sums.
-3. `collect` — `next_unpaid` + `refuse_collect`; Channel seats refused. `on_receipt` → SI then PE against SI; `on_invoice` / `none` → PE against SO.
+3. `collect` — `next_unpaid` + `refuse_collect`; Channel seats refused. Raises Approval kind **Payment** (Finance Lead). Payment Entry is created only on Approved (`post_collect`). `on_receipt` → SI then PE against SI; `on_invoice` / `none` → PE against SO.
 4. `cancel` — refused if Possession / Sold / posted money.
 5. Channel `request_booking` still raises Approval kind `Hold booking`. Handler calls `activate_from_hold` (does **not** CAS the unit by itself).
 

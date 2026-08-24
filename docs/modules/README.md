@@ -11,7 +11,7 @@ Implementable DocType designs. High-level map is locked in `docs/locked-structur
 | Audit | Atlas Audit Event | Append-only trail |
 | Sales Analytics | [analytics.md](analytics.md) | Funnel counts + model monitor (CatBoost external) |
 | Books | [books.md](books.md) | Recon / exception cases. Atlas never posts |
-| Channel & Partner | [channel.md](channel.md) | Daily report gate + Role fixtures. User Permission still site data |
+| Channel & Partner | [channel.md](channel.md) | Daily report + agent roster (UP at runtime, not fixtures) + exclusive project lock |
 | Lead & Pipeline | [pipeline.md](pipeline.md) | Native Lead ingest/dedup; CatBoost external |
 | Booking | [booking.md](booking.md) | Scaffolded — Active → SO, collect, commission Accrued |
 | Handover | [handover.md](handover.md) | Occupancy Certificate + snags + full collection → Sold |

@@ -37,7 +37,17 @@ frappe.ui.form.on("Atlas Booking", {
 								mode_of_payment: values.mode_of_payment,
 							},
 							freeze: true,
-							callback: () => frm.reload_doc(),
+							callback: (r) => {
+								const msg = r.message || {};
+								if (msg.approval) {
+									frappe.msgprint(
+										__("Collection waiting in Approvals: {0}. Payment Entry is created only after a yes.", [
+											msg.approval,
+										]),
+									);
+								}
+								frm.reload_doc();
+							},
 						});
 					},
 					__("Collect against next unpaid step"),

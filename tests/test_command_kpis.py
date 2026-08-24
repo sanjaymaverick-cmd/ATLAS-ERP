@@ -92,9 +92,10 @@ def test_aging_falls_back_to_creation_date():
 	assert board["approvals"]["past_sla"] == 1
 
 
-def test_command_never_exposes_bank_cash_or_runway():
+def test_command_never_invents_bank_cash_or_runway():
 	board = build_command(units=[], holds=[], approvals=[], today="2026-08-24")
 	assert board["shows_cash"] is False
+	assert board["cash"] == {}
 	assert "runway" not in board
 	assert "cash" not in board["money"]
 

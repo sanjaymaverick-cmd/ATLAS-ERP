@@ -10,6 +10,7 @@ from erpatlas.property_inventory.lock import (
 	HOLD_RELEASED,
 	channel_needs_booking_approval,
 	live_unit_key,
+	refuse_exclusive_hold,
 	refuse_hold,
 	refuse_hold_without_report,
 )
@@ -47,6 +48,12 @@ class AtlasUnitHold(Document):
 			if not company:
 				frappe.throw(_("Channel seats must be bound to a Channel Company."))
 			self.channel_company = company
+		exclusive = None
+		if unit.project and frappe.get_meta("Project").has_field("atlas_exclusive_channel_company"):
+			exclusive = frappe.db.get_value("Project", unit.project, "atlas_exclusive_channel_company")
+		err = refuse_exclusive_hold(exclusive_channel=exclusive, hold_channel=self.channel_company)
+		if err:
+			frappe.throw(_(err))
 		if not self.until:
 			days = frappe.db.get_single_value("Atlas Settings", "default_hold_days") or 7
 			self.until = add_days(today(), int(days))

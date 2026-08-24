@@ -21,3 +21,7 @@ def refuse_commission_auto_pay(doc, method=None):
 	)
 	if err:
 		frappe.throw(err)
+	if getattr(frappe.flags, "in_atlas_payment", False):
+		return
+	if doc.get("atlas_booking") and not doc.get("atlas_approval"):
+		frappe.throw("Collection waits for a Payment yes in Approvals.")

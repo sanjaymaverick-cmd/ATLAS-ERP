@@ -17,3 +17,21 @@ def validate_vendor_active(doc, method=None):
 	err = refuse_purchase_order(atlas_stage=stage or "Draft")
 	if err:
 		frappe.throw(err)
+
+
+def refuse_submit_without_approval(doc, method=None):
+	import frappe
+
+	from erpatlas.commercial.po import refuse_submit_po
+
+	approved = bool(
+		frappe.db.exists(
+			"Atlas Approval",
+			{"kind": "Purchase order", "ref_name": doc.name, "status": "Approved"},
+		)
+	)
+	err = refuse_submit_po(
+		approved=approved, flagged=bool(getattr(frappe.flags, "in_atlas_po", False))
+	)
+	if err:
+		frappe.throw(err)

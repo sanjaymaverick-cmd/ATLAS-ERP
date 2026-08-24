@@ -46,7 +46,7 @@ Who may **decide** at all: Developer Admin, Project Director, Finance, Sales Man
 | Hold booking | Inventory | `bookHold` completes | clear `booking_requested` | yes |
 | Payment | Collections (later) | then and only then a Payment Entry may be created | no payment | yes |
 
-Handlers are registered by the owning module. Inventory registers `Hold booking` in this slice. Other kinds accept/reject the Approval row and leave a `NotImplemented` log until those modules ship — they must not invent Payment Entries.
+Handlers: Hold booking, Commission, Vendor, Document export, Change, **Payment** (`post_collect`), **Purchase order** (submit PO). Payment Entry is created only by the Payment handler.
 
 ## DocType: Atlas Approval
 

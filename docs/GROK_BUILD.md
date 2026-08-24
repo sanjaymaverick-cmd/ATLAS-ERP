@@ -87,11 +87,17 @@ One system: custom Frappe app `erpatlas` on ERPNext version-16. Full Atlas-3 fea
 - Drawings: register revision (no viewer)
 - Sales Analytics: funnel + model monitor (CatBoost still external)
 - Books case: recon / exception; Atlas never posts
+- Payment: Collect raises Approval; Payment Entry only on Approved
+- Purchase order: submit only after Approval yes
+- Command cash/runway from ERPNext GL when Bank/Cash accounts exist
+- Channel agent roster (User Permission at runtime) + exclusive project lock
 - Research docs 01–06; docs/modules/command.md, booking.md
 
 ## Next implementation slice (unless the user names another)
 
-Locked domain slices above are on main. Prefer the next named gap. Still do **not** implement CatBoost, WhatsApp send, Tally import, or RERA 70/30 unless named.
+Payment (PE only after Approval), Purchase order submit-on-yes, Command GL cash/runway, Channel agent roster + exclusive lock are on main. Bench/Desk UAT is site work.
+
+Still do **not** implement CatBoost inside Atlas, WhatsApp send, Tally import/posts, or RERA 70/30 bank split unless the lock is explicitly reopened.
 
 ## Language (do not mix)
 
