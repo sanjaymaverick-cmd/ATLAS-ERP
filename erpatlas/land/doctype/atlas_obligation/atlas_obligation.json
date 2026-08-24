@@ -1,0 +1,28 @@
+{
+  "actions": [],
+  "allow_rename": 0,
+  "autoname": "naming_series:",
+  "creation": "2026-08-25 02:00:00",
+  "doctype": "DocType",
+  "engine": "InnoDB",
+  "field_order": ["naming_series", "project", "kind", "title", "due", "status", "filed_ref"],
+  "fields": [
+    {"fieldname": "naming_series", "fieldtype": "Select", "hidden": 1, "label": "Series", "options": "AOB-.#####"},
+    {"fieldname": "project", "fieldtype": "Link", "in_list_view": 1, "in_standard_filter": 1, "label": "Project", "options": "Project", "reqd": 1},
+    {"fieldname": "kind", "fieldtype": "Select", "in_list_view": 1, "label": "Kind", "options": "rera\nlabour\ninsurance\ntax", "reqd": 1},
+    {"fieldname": "title", "fieldtype": "Data", "in_list_view": 1, "label": "Title", "reqd": 1},
+    {"fieldname": "due", "fieldtype": "Date", "in_list_view": 1, "label": "Due"},
+    {"default": "open", "fieldname": "status", "fieldtype": "Select", "in_list_view": 1, "label": "Status", "options": "open\nfiled\noverdue", "reqd": 1},
+    {"fieldname": "filed_ref", "fieldtype": "Data", "label": "Filing ref"}
+  ],
+  "module": "Land Legal",
+  "name": "Atlas Obligation",
+  "naming_rule": "By \"Naming Series\" field",
+  "owner": "Administrator",
+  "permissions": [
+    {"create": 1, "delete": 1, "read": 1, "write": 1, "role": "Atlas Developer Admin"},
+    {"create": 1, "read": 1, "write": 1, "role": "Atlas Land Legal"},
+    {"read": 1, "role": "Atlas Project Director"}
+  ],
+  "engine": "InnoDB"
+}

@@ -54,6 +54,26 @@ def get_data():
 			"label": _("Quotes"),
 		},
 		{
+			"module_name": "Controls",
+			"type": "module",
+			"label": _("Materials"),
+		},
+		{
+			"module_name": "Land Legal",
+			"type": "module",
+			"label": _("Land and filings"),
+		},
+		{
+			"module_name": "Organization",
+			"type": "module",
+			"label": _("Owner decisions"),
+		},
+		{
+			"module_name": "Communications",
+			"type": "module",
+			"label": _("WhatsApp templates"),
+		},
+		{
 			"module_name": "Command",
 			"type": "module",
 			"label": _("Command"),

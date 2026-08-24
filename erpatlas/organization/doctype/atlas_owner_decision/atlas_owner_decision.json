@@ -1,0 +1,22 @@
+{
+  "actions": [],
+  "autoname": "naming_series:",
+  "doctype": "DocType",
+  "engine": "InnoDB",
+  "field_order": ["naming_series", "title", "detail", "status", "note"],
+  "fields": [
+    {"fieldname": "naming_series", "fieldtype": "Select", "hidden": 1, "options": "AOD-.#####"},
+    {"fieldname": "title", "fieldtype": "Data", "in_list_view": 1, "label": "Title", "reqd": 1},
+    {"fieldname": "detail", "fieldtype": "Small Text", "label": "Detail"},
+    {"default": "open", "fieldname": "status", "fieldtype": "Select", "in_list_view": 1, "label": "Status", "options": "open\nrecorded", "reqd": 1},
+    {"fieldname": "note", "fieldtype": "Small Text", "label": "Note"}
+  ],
+  "module": "Organization",
+  "name": "Atlas Owner Decision",
+  "naming_rule": "By \"Naming Series\" field",
+  "owner": "Administrator",
+  "permissions": [
+    {"create": 1, "delete": 1, "read": 1, "write": 1, "role": "Atlas Developer Admin"},
+    {"read": 1, "role": "Atlas Project Director"}
+  ]
+}

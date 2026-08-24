@@ -1,0 +1,21 @@
+{
+  "actions": [],
+  "autoname": "naming_series:",
+  "doctype": "DocType",
+  "engine": "InnoDB",
+  "field_order": ["naming_series", "title", "body", "status"],
+  "fields": [
+    {"fieldname": "naming_series", "fieldtype": "Select", "hidden": 1, "options": "AAN-.#####"},
+    {"fieldname": "title", "fieldtype": "Data", "in_list_view": 1, "label": "Title", "reqd": 1},
+    {"fieldname": "body", "fieldtype": "Small Text", "label": "Draft"},
+    {"default": "draft", "fieldname": "status", "fieldtype": "Select", "read_only": 1, "options": "draft", "label": "Status"}
+  ],
+  "module": "Organization",
+  "name": "Atlas Assistant Note",
+  "naming_rule": "By \"Naming Series\" field",
+  "owner": "Administrator",
+  "permissions": [
+    {"create": 1, "read": 1, "write": 1, "role": "Atlas Developer Admin"},
+    {"create": 1, "read": 1, "write": 1, "role": "Atlas Project Director"}
+  ]
+}
