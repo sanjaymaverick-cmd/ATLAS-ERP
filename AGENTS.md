@@ -6,6 +6,9 @@ Native Frappe app on ERPNext. Atlas-3 (`D:\work Dir\Atlas 3`) is the product sou
 
 - `docs/locked-structure.md` — modules, roles, invariants. Do not re-open unless the user explicitly changes them.
 - `CONTEXT.md` — words. Challenge a conflicting term immediately.
+- ERPNext **version-16** (ADR 0008). `extend_doctype_class`, not `override_doctype_class`.
+- Money contract: `docs/research/02-booking-sales-order-gst.md` and `docs/research/03-commission-tds.md`.
+
 
 ## When designing or changing a DocType
 

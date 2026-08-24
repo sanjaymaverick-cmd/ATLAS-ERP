@@ -4,11 +4,12 @@ Do not re-open this file unless the user explicitly requests a change. Detail li
 
 ## Architecture
 
-- One system: a native custom Frappe app (`erpatlas`) on ERPNext.
+- One system: a native custom Frappe app (`erpatlas`) on **ERPNext version-16** (ADR 0008).
 - ERPNext Accounts is the books of record.
 - Tally is migration-only (XML in). Atlas never posts to Tally.
 - CatBoost scoring stays an external process (`cat_features`, no Ordered Target Statistics re-implementation).
 - Company isolation, hard unit locks, commission accrual, four-eyes, and Atlas-3 cognitive-load UX are preserved.
+
 
 ## Modules
 
