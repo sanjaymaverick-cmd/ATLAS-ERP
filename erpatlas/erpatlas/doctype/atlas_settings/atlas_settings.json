@@ -1,0 +1,35 @@
+{
+  "actions": [],
+  "creation": "2026-08-24 16:00:00",
+  "doctype": "DocType",
+  "engine": "InnoDB",
+  "field_order": ["md_bypass_four_eyes", "default_hold_days"],
+  "fields": [
+    {
+      "default": "1",
+      "description": "When checked, Atlas Developer Admin can act on any pending Approval. Recorded in docs/adr/0006-md-four-eyes-bypass.md. Do not flip the default silently.",
+      "fieldname": "md_bypass_four_eyes",
+      "fieldtype": "Check",
+      "label": "MD can act on any approval"
+    },
+    {
+      "default": "7",
+      "fieldname": "default_hold_days",
+      "fieldtype": "Int",
+      "label": "Default hold days"
+    }
+  ],
+  "issingle": 1,
+  "links": [],
+  "modified": "2026-08-24 16:00:00",
+  "module": "ERPATLAS",
+  "name": "Atlas Settings",
+  "owner": "Administrator",
+  "permissions": [
+    {"email": 1, "print": 1, "read": 1, "role": "Atlas Developer Admin", "write": 1},
+    {"email": 1, "print": 1, "read": 1, "role": "Atlas Project Director"}
+  ],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "track_changes": 1
+}

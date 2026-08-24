@@ -1,0 +1,7 @@
+include license.txt
+include erpatlas/modules.txt
+include erpatlas/patches.txt
+recursive-include erpatlas *.json
+recursive-include erpatlas *.py
+recursive-include erpatlas *.md
+recursive-include erpatlas *.txt

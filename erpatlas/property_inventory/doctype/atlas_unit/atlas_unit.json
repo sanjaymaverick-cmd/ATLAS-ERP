@@ -1,0 +1,131 @@
+{
+  "actions": [],
+  "allow_rename": 0,
+  "autoname": "naming_series:",
+  "creation": "2026-08-24 16:00:00",
+  "doctype": "DocType",
+  "engine": "InnoDB",
+  "field_order": [
+    "naming_series",
+    "project",
+    "tower",
+    "code",
+    "kind",
+    "floor",
+    "area",
+    "price",
+    "status",
+    "project_code_key",
+    "events"
+  ],
+  "fields": [
+    {
+      "fieldname": "naming_series",
+      "fieldtype": "Select",
+      "hidden": 1,
+      "label": "Series",
+      "options": "AUN-.#####"
+    },
+    {
+      "fieldname": "project",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "in_standard_filter": 1,
+      "label": "Project",
+      "options": "Project",
+      "reqd": 1
+    },
+    {
+      "fieldname": "tower",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "in_standard_filter": 1,
+      "label": "Tower",
+      "options": "Atlas Tower",
+      "reqd": 1
+    },
+    {
+      "fieldname": "code",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "Code",
+      "reqd": 1
+    },
+    {
+      "fieldname": "kind",
+      "fieldtype": "Select",
+      "in_list_view": 1,
+      "label": "Kind",
+      "options": "Flat\nShop\nPlot",
+      "reqd": 1
+    },
+    {
+      "fieldname": "floor",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "Floor",
+      "reqd": 1
+    },
+    {
+      "fieldname": "area",
+      "fieldtype": "Data",
+      "label": "Area",
+      "reqd": 1
+    },
+    {
+      "fieldname": "price",
+      "fieldtype": "Currency",
+      "label": "Price",
+      "reqd": 1
+    },
+    {
+      "default": "Available",
+      "fieldname": "status",
+      "fieldtype": "Select",
+      "in_list_view": 1,
+      "in_standard_filter": 1,
+      "label": "Status",
+      "options": "Available\nHeld\nBooked\nSold\nCancelled\nDispute",
+      "reqd": 1,
+      "set_only_once": 0
+    },
+    {
+      "fieldname": "project_code_key",
+      "fieldtype": "Data",
+      "hidden": 1,
+      "label": "Project Code Key",
+      "no_copy": 1,
+      "read_only": 1,
+      "unique": 1
+    },
+    {
+      "fieldname": "events",
+      "fieldtype": "Table",
+      "label": "Status history",
+      "options": "Atlas Unit Event"
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "links": [
+    {"link_doctype": "Atlas Unit Hold", "link_fieldname": "unit"}
+  ],
+  "modified": "2026-08-24 16:00:00",
+  "module": "Property Inventory",
+  "name": "Atlas Unit",
+  "naming_rule": "By \"Naming Series\" field",
+  "owner": "Administrator",
+  "permissions": [
+    {"create": 1, "delete": 1, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "Atlas Developer Admin", "share": 1, "write": 1},
+    {"create": 1, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "Atlas Project Director", "share": 1, "write": 1},
+    {"create": 1, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "Atlas Sales Manager", "share": 1, "write": 1},
+    {"email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "Atlas Channel Admin"},
+    {"email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "Atlas Channel Agent"},
+    {"email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "Atlas Finance"},
+    {"email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "Atlas Commercial"},
+    {"email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "Atlas Site"}
+  ],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "title_field": "code",
+  "track_changes": 1
+}

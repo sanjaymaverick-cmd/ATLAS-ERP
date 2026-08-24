@@ -1,0 +1,65 @@
+{
+  "actions": [],
+  "allow_rename": 1,
+  "autoname": "field:company_name",
+  "creation": "2026-08-24 16:00:00",
+  "doctype": "DocType",
+  "engine": "InnoDB",
+  "field_order": ["company_name", "city", "gstin", "status", "rate"],
+  "fields": [
+    {
+      "fieldname": "company_name",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "Company Name",
+      "reqd": 1,
+      "unique": 1
+    },
+    {
+      "fieldname": "city",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "City",
+      "reqd": 1
+    },
+    {
+      "fieldname": "gstin",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "GSTIN"
+    },
+    {
+      "default": "Invited",
+      "fieldname": "status",
+      "fieldtype": "Select",
+      "in_list_view": 1,
+      "in_standard_filter": 1,
+      "label": "Status",
+      "options": "Invited\nActive\nSuspended",
+      "reqd": 1
+    },
+    {
+      "fieldname": "rate",
+      "fieldtype": "Percent",
+      "label": "Commission rate"
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "links": [],
+  "modified": "2026-08-24 16:00:00",
+  "module": "Property Inventory",
+  "name": "Atlas Channel Company",
+  "naming_rule": "By fieldname",
+  "owner": "Administrator",
+  "permissions": [
+    {"create": 1, "delete": 1, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "Atlas Developer Admin", "share": 1, "write": 1},
+    {"create": 1, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "Atlas Project Director", "share": 1, "write": 1},
+    {"create": 1, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "Atlas Sales Manager", "share": 1, "write": 1},
+    {"email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "Atlas Channel Admin"},
+    {"email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "Atlas Channel Agent"},
+    {"email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "Atlas Finance"}
+  ],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "track_changes": 1
+}

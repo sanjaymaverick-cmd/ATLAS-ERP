@@ -1,0 +1,15 @@
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+dist/
+build/
+.pytest_cache/
+.venv/
+venv/
+node_modules/
+*.swp
+.DS_Store
+erpatlas/public/node_modules
+erpatlas/public/dist
