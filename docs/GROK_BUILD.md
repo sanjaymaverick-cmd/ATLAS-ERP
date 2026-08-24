@@ -15,7 +15,7 @@ You are continuing ERPATLAS. This is a native Frappe app on ERPNext, not a TanSt
 - App package name: erpatlas
 - Bench install: bench get-app erpatlas "D:\work Dir\Atlas-ERP" then bench --site SITE install-app erpatlas
 
-Always work in the ATLAS-ERP checkout. Feature work goes on a branch + PR against main (first commit b187475 was the empty-repo exception).
+Always work in the ATLAS-ERP checkout. Feature work goes on a branch + PR against main. Do not force-push main.
 
 ## What this product is
 
@@ -25,8 +25,8 @@ One system: custom Frappe app `erpatlas` on ERPNext version-16. Full Atlas-3 fea
 
 1. CONTEXT.md — words. Challenge a conflicting term immediately.
 2. docs/locked-structure.md — modules, roles, invariants. Do not re-open unless the user explicitly changes them.
-3. docs/adr/* — especially 0003 unified approvals, 0004 unit is the lock, 0005 three company words, 0006 MD four-eyes bypass ON, 0007 booking then Sales Order, 0008 ERPNext v16.
-4. docs/modules/property-inventory.md and docs/modules/approvals.md
+3. docs/adr/* — especially 0003–0008.
+4. docs/modules/property-inventory.md, approvals.md, booking.md, command.md
 5. docs/research/README.md — money and isolation contracts.
 
 ## Locked stack
@@ -40,40 +40,42 @@ One system: custom Frappe app `erpatlas` on ERPNext version-16. Full Atlas-3 fea
 
 ## Invariants (never break)
 
-- Unit cannot be held unless Available; concurrent second hold is refused (CAS FOR UPDATE in lock_adapter + unique live_unit).
+- Unit cannot be held unless Available; concurrent second hold is refused (CAS FOR UPDATE + unique live_unit).
 - Commission accrues only. Approvals never create a Payment Entry.
 - Possession blocked until snags closed AND OC received AND payment plan collected.
 - No PO until vendor is Active (GSTIN).
 - Document export is four-eyes + single-use grant.
 - Atlas never posts to Tally.
-- Channel companies never see each other’s data (permission_query_conditions + User Permission on Atlas Channel Company, not ERPNext Company).
+- Channel companies never see each other’s data (query conditions + User Permission on Atlas Channel Company).
+- Command AI is read-only: never writes Unit status, PE, or Approvals.
 
 ## How to write code
 
 - Prefer native ERPNext objects (Company, Project, Lead, Customer, Sales Order, Payment Entry, Journal Entry, Supplier, Purchase Invoice).
 - Custom DocType only when Atlas-3 has logic ERPNext does not provide.
-- Put rules in deep modules (property_inventory.lock, approvals.queue, books.payment_gst). Controllers stay thin. Do not import frappe in lock.py / payment_gst.py.
+- Put rules in deep modules (property_inventory.lock, approvals.queue, books.payment_gst, booking.plan, command.kpis). Controllers stay thin. Do not import frappe in pure modules.
 - Map every field/status/server rule to Atlas-3 acceptance.
-- Pure tests: python -m pytest tests -q  (must stay green; they do not need a site).
+- Pure tests: python -m pytest tests -q (must stay green).
 - GST/TDS rates are CA configuration, not Python constants.
 
-## Current code (as of 2026-08-24)
+## Current code on main (as of 2026-08-24, post PR #1 + Booking + Command)
 
-main: b187475 scaffold — Atlas Unit / Tower / Hold / Channel Company / Atlas Approval / lock CAS / unified queue.
-
-Branch research/money-isolation-v16 (PR https://github.com/sanjaymaverick-cmd/ATLAS-ERP/pull/1): ADR 0008, research/01–06, payment_gst.py, add_to_apps_screen, requires-python 3.14.
-
-Branch feature/atlas-booking (on top of that):
-- Atlas Booking + payment-step child + Atlas Commission (Accrued, no PE)
-- On Active: CAS unit → Booked, close Hold, submit Sales Order (non-stock ATLAS-UNIT, atlas_booking / atlas_unit)
-- Collect: next_unpaid + refuse_collect; on_receipt → SI then PE against SI; on_invoice / none → PE against SO
-- Channel hold→book still Approval kind Hold booking; handler calls activate_from_hold
-- Isolation: Channel may read units they held or booked
-- extend_doctype_class Sales Order mixin
+- Property Inventory: Unit / Tower / Hold / Channel Company; lock CAS
+- Approvals: unified Atlas Approval queue
+- Booking: Atlas Booking + payment steps + Commission Accrued; Active → SO; collect via payment_gst
+- books: payment_gst, posting stubs, Sales Order mixin
+- Command P0: Desk page + Workspace; unit/hold/approval KPIs + exception list
+- Research docs 01–06; docs/modules/command.md, booking.md
 
 ## Next implementation slice (unless the user names another)
 
-Handover & Possession (OC + snags + full collection → unit Sold), or commission JE / TDS PI (research/03), or Channel daily-report gate / role fixtures (research/05).
+Prefer one of:
+
+1. Handover & Possession — OC + snags + full collection → Unit Sold / Booking Possession
+2. Commission books — accrual JE optional; Approved → Purchase Invoice + TDS (Tax Withholding); PE only from Finance (research/03)
+3. Channel fixtures — Role/DocPerm fixtures; User Permission seed pattern; daily-report gate before hold (research/05)
+4. Command P1 — money KPIs from Booking / SO / PE (collections, booking value)
+5. Command P2 — deterministic risk cards + Atlas Settings thresholds
 
 Do not implement CatBoost, WhatsApp, Tally import, or RERA 70/30 unless named.
 
@@ -87,9 +89,9 @@ Approval ≠ ERPNext Workflow.
 
 ## Git
 
-- Do not force-push main.
+- Branch from latest main. PR against main.
 - Commit messages: what changed and why, Atlas-3 rule if any.
 - After code: pytest tests -q must pass.
 
-When the user says “go”, start the next slice from the contracts above. If they ask a question, answer from these files first.
+When the user says “go”, implement the named slice (or the first next item above). If they ask a question, answer from these files first.
 ```
