@@ -1,0 +1,27 @@
+{
+  "actions": [],
+  "allow_rename": 0,
+  "autoname": "naming_series:",
+  "creation": "2026-08-25 07:00:00",
+  "doctype": "DocType",
+  "engine": "InnoDB",
+  "field_order": ["naming_series", "user", "channel_company", "status"],
+  "fields": [
+    {"fieldname": "naming_series", "fieldtype": "Select", "hidden": 1, "options": "ACA-.#####"},
+    {"fieldname": "user", "fieldtype": "Link", "in_list_view": 1, "label": "User", "options": "User", "reqd": 1, "unique": 1},
+    {"fieldname": "channel_company", "fieldtype": "Link", "in_list_view": 1, "in_standard_filter": 1, "label": "Channel Company", "options": "Atlas Channel Company", "reqd": 1},
+    {"default": "Active", "fieldname": "status", "fieldtype": "Select", "in_list_view": 1, "label": "Status", "options": "Active\nSuspended", "reqd": 1}
+  ],
+  "module": "Channel",
+  "name": "Atlas Channel Agent",
+  "naming_rule": "By \"Naming Series\" field",
+  "owner": "Administrator",
+  "permissions": [
+    {"create": 1, "delete": 1, "read": 1, "write": 1, "role": "Atlas Developer Admin"},
+    {"create": 1, "read": 1, "write": 1, "role": "Atlas Channel Admin"},
+    {"read": 1, "role": "Atlas Sales Manager"}
+  ],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "track_changes": 1
+}

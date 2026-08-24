@@ -33,6 +33,29 @@ DEFAULT_HOLD_EXPIRING_DAYS = 2
 EXCEPTION_LIMIT = 15
 
 
+def cash_kpis(*, bank=None, cash=None, avg_monthly_outflow=None) -> dict | None:
+	"""Bank + cash from GL facts. Runway = cash position ÷ 3-month avg net outflow. None if no GL."""
+	if bank is None and cash is None:
+		return None
+	bank_m = money(bank or 0)
+	cash_m = money(cash or 0)
+	position = bank_m + cash_m
+	outflow = money(avg_monthly_outflow or 0)
+	runway = None
+	if outflow > 0:
+		runway = money(position / outflow)
+		if runway < 0:
+			runway = money(0)
+	return {
+		"cash_position": position,
+		"bank": bank_m,
+		"cash": cash_m,
+		"avg_monthly_outflow": outflow,
+		"runway_months": runway,
+		"source": "gl",
+	}
+
+
 def refuse_command_access(roles: Iterable[str]) -> str | None:
 	role_set = set(roles)
 	if role_set & CHANNEL_ROLES:
@@ -214,8 +237,9 @@ def build_command(
 	snags: Iterable[Mapping] = (),
 	vendors: Iterable[Mapping] = (),
 	thresholds: Mapping | None = None,
+	cash_board: Mapping | None = None,
 ) -> dict:
-	"""Exception-first payload. Booking money is P1. Bank cash/runway is not."""
+	"""Exception-first payload. Booking money is P1. Bank cash/runway only when GL facts are passed."""
 	units_f = filter_by_projects(units, project_names)
 	holds_f = filter_by_projects(holds, project_names)
 	approvals_f = filter_by_projects(approvals, project_names)
@@ -237,6 +261,13 @@ def build_command(
 	from erpatlas.command.risk import DEFAULT_THRESHOLDS, risk_cards
 
 	th = {**DEFAULT_THRESHOLDS, **(thresholds or {})}
+	cash = None
+	if cash_board:
+		cash = cash_kpis(
+			bank=cash_board.get("bank"),
+			cash=cash_board.get("cash"),
+			avg_monthly_outflow=cash_board.get("avg_monthly_outflow"),
+		)
 	risk = risk_cards(
 		holds=holds_f,
 		approvals=approvals_f,
@@ -266,5 +297,6 @@ def build_command(
 		"risk": risk,
 		"thresholds": th,
 		"shows_money": True,
-		"shows_cash": False,
+		"shows_cash": bool(cash),
+		"cash": cash or {},
 	}

@@ -1,2 +1,3 @@
 erpatlas.patches.v16_0.booking_custom_fields
 erpatlas.patches.v16_0.lead_custom_fields
+erpatlas.patches.v16_0.payment_po_channel_fields

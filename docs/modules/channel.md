@@ -7,6 +7,9 @@
 - **Atlas Daily Report** — one per agent per calendar day. Channel hold is refused until today’s report exists (`atlas_has_today_report` → `channel.adapter.has_today_report`).
 - **Role fixtures** — the eleven Atlas roles in `erpatlas/fixtures/role.json`. User Permission rows stay site data (invite agent), not production fixtures.
 
-## Not in this slice
+## Also in this module
 
-Agent roster UI, exclusive project lock, leads isolation (needs `channel_company` on Lead), WhatsApp.
+- **Atlas Channel Agent** — roster (User + Channel Company). On save, a **User Permission** is created at runtime. That is site data, not a fixture.
+- **Exclusive project lock** — Project `atlas_exclusive_channel_company`. Another Channel Company cannot hold. In-house (no channel) still can.
+
+WhatsApp send stays out.

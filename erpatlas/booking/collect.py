@@ -1,7 +1,14 @@
-"""Collect against the next unpaid Atlas Booking step. Never from Approvals."""
+"""Collect against the next unpaid Atlas Booking step.
+
+Raising Collect puts kind Payment on the queue. The Payment Entry is created
+only when that Approval is Approved.
+"""
 
 from __future__ import annotations
 
+import json
+
+from erpatlas.booking.payment import payment_context, payment_waiting_on, refuse_request_payment
 from erpatlas.booking.plan import refuse_cancel, refuse_collect_booking, next_collect_step
 from erpatlas.books.payment_gst import money
 from erpatlas.books.posting import collect_posting
@@ -11,6 +18,8 @@ from erpatlas.property_inventory.lock import AVAILABLE, BOOKED, CHANNEL_ROLES
 def collect(booking_name: str, amount, *, mode_of_payment: str | None = None) -> dict:
 	import frappe
 	from frappe import _
+
+	from erpatlas.approvals.intake import raise_approval
 
 	_refuse_channel_collector()
 	booking = frappe.get_doc("Atlas Booking", booking_name)
@@ -25,6 +34,64 @@ def collect(booking_name: str, amount, *, mode_of_payment: str | None = None) ->
 				"collected": row.collected or 0,
 			}
 		)
+	step = next_collect_step(steps)
+	plan_gross = money(0)
+	plan_collected = money(booking.collected or 0)
+	for row in booking.payment_steps:
+		plan_gross += money(row.gross or 0)
+	err = refuse_collect_booking(
+		status=booking.status,
+		step=step,
+		receipt=amount,
+		plan_collected=plan_collected,
+		plan_gross=plan_gross,
+	)
+	if err:
+		frappe.throw(_(err))
+	pending = bool(
+		frappe.db.exists(
+			"Atlas Approval",
+			{"kind": "Payment", "ref_name": booking.name, "status": "Pending"},
+		)
+	)
+	err = refuse_request_payment(pending=pending)
+	if err:
+		frappe.throw(_(err))
+	ctx = payment_context(amount=money(amount), mode_of_payment=mode_of_payment, step_idx=step["idx"])
+	approval = raise_approval(
+		kind="Payment",
+		title=f"Collect {money(amount)} · {booking.name}",
+		project=booking.project,
+		waiting_on=payment_waiting_on(),
+		amount=float(money(amount)),
+		ref_doctype="Atlas Booking",
+		ref_name=booking.name,
+		context=json.dumps(ctx),
+	)
+	return {
+		"booking": booking.name,
+		"approval": approval,
+		"payment_entry": None,
+		"creates_payment_entry": False,
+	}
+
+
+def post_collect(
+	booking_name: str,
+	amount,
+	*,
+	mode_of_payment: str | None = None,
+	approval_name: str | None = None,
+) -> dict:
+	import frappe
+	from frappe import _
+
+	booking = frappe.get_doc("Atlas Booking", booking_name)
+	if not booking.sales_order:
+		frappe.throw(_("Booking has no Sales Order."))
+	steps = []
+	for i, row in enumerate(booking.payment_steps):
+		steps.append({"idx": i, "gross": row.gross, "collected": row.collected or 0})
 	step = next_collect_step(steps)
 	plan_gross = money(0)
 	plan_collected = money(booking.collected or 0)
@@ -57,6 +124,7 @@ def collect(booking_name: str, amount, *, mode_of_payment: str | None = None) ->
 		against_dt=against_dt,
 		against_name=against_name,
 		mode_of_payment=mode_of_payment,
+		approval_name=approval_name,
 	)
 	idx = int(step["idx"])
 	row = booking.payment_steps[idx]
@@ -150,7 +218,7 @@ def _submit_step_invoice(booking, qty) -> str:
 	return si.name
 
 
-def _submit_payment(booking, *, amount, against_dt, against_name, mode_of_payment):
+def _submit_payment(booking, *, amount, against_dt, against_name, mode_of_payment, approval_name=None):
 	import frappe
 	from frappe import _
 
@@ -165,7 +233,13 @@ def _submit_payment(booking, *, amount, against_dt, against_name, mode_of_paymen
 		pe.mode_of_payment = mode_of_payment
 	if hasattr(pe, "atlas_booking"):
 		pe.atlas_booking = booking.name
+	if approval_name and hasattr(pe, "atlas_approval"):
+		pe.atlas_approval = approval_name
 	pe.flags.ignore_permissions = True
-	pe.insert()
-	pe.submit()
+	frappe.flags.in_atlas_payment = True
+	try:
+		pe.insert()
+		pe.submit()
+	finally:
+		frappe.flags.in_atlas_payment = False
 	return pe.name

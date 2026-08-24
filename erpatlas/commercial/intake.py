@@ -30,6 +30,13 @@ def send_vendor_for_approval(supplier: str):
 	return {"approval": name}
 
 
+@frappe.whitelist()
+def request_po_approval(po: str):
+	from erpatlas.commercial.po import raise_po_approval
+
+	return raise_po_approval(po)
+
+
 def _any_project(supplier) -> str:
 	company = supplier.get("default_company")
 	filters = {"company": company} if company else {}

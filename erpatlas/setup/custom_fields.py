@@ -189,6 +189,30 @@ CUSTOM_FIELDS = {
 			"options": "Sales Taxes and Charges Template",
 			"insert_after": "atlas_affordable",
 		},
+		{
+			"fieldname": "atlas_exclusive_channel_company",
+			"label": "Exclusive Channel Company",
+			"fieldtype": "Link",
+			"options": "Atlas Channel Company",
+			"insert_after": "atlas_sales_tax_template",
+		},
+	],
+	"Purchase Order": [
+		{
+			"fieldname": "atlas_approval",
+			"label": "Atlas Approval",
+			"fieldtype": "Link",
+			"options": "Atlas Approval",
+			"insert_after": "supplier",
+			"read_only": 1,
+		},
+		{
+			"fieldname": "atlas_rfq",
+			"label": "Atlas RFQ",
+			"fieldtype": "Data",
+			"insert_after": "atlas_approval",
+			"read_only": 1,
+		},
 	],
 }
 

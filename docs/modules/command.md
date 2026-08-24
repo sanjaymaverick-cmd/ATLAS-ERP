@@ -117,7 +117,7 @@ Start with **deterministic thresholds** in Atlas Settings. ML scores may layer l
 
 P0 does not require Booking. P1+ does.
 
-**P1:** Wired from Atlas Booking + payment steps + Payment Entry (`atlas_booking`) + Atlas Commission. Collections MTD, live/MTD booking value, plan vs actual, commission Accrued/Approved (not Paid). Hold→book % and channel vs in-house mix. Bank cash and runway are still not on this page (need GL; not a shadow ledger).
+**P1:** Wired from Atlas Booking + payment steps + Payment Entry (`atlas_booking`) + Atlas Commission. Collections MTD, live/MTD booking value, plan vs actual, commission Accrued/Approved (not Paid). Hold→book % and channel vs in-house mix. Bank cash and runway appear only when ERPNext GL Bank/Cash accounts exist for the Legal Entity (`shows_cash`). Not a shadow ledger.
 
 **P5:** Printable board pack from the live Command JSON (`command/boardpack.py`). Stores as-of, `model_id=linear-snapshot`, and a feature summary on the pack. Frappe `get_pdf` adapter + Command page button. Advisory — never writes Unit / PE / Approval. Not CatBoost.
 
