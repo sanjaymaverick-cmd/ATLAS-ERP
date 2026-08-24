@@ -7,7 +7,7 @@ Implementable DocType designs. High-level map is locked in `docs/locked-structur
 | Property Inventory | [property-inventory.md](property-inventory.md) | Scaffolded |
 | Approvals | [approvals.md](approvals.md) | Scaffolded |
 | Command (CEO) | [command.md](command.md) | P0 + P1 (Booking/PE money KPIs). P2 risk cards next |
-| Channel & Partner | — | Channel Company row only (isolation). Fixtures: [research/05](../research/05-channel-isolation-fixtures.md) |
+| Channel & Partner | [channel.md](channel.md) | Daily report gate + Role fixtures. User Permission still site data |
 | Booking | [booking.md](booking.md) | Scaffolded — Active → SO, collect, commission Accrued |
 | Handover | [handover.md](handover.md) | Occupancy Certificate + snags + full collection → Sold |
 | Commission (books) | — | Accrual row on Booking. JE / TDS PI still [research/03](../research/03-commission-tds.md) |

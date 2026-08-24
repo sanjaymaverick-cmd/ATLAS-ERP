@@ -1,0 +1,122 @@
+{
+  "actions": [],
+  "allow_rename": 0,
+  "autoname": "naming_series:",
+  "creation": "2026-08-24 22:00:00",
+  "doctype": "DocType",
+  "engine": "InnoDB",
+  "field_order": [
+    "naming_series",
+    "agent",
+    "report_date",
+    "channel_company",
+    "calls",
+    "visits",
+    "leads",
+    "holds",
+    "bookings",
+    "cancellations",
+    "notes",
+    "report_key"
+  ],
+  "fields": [
+    {
+      "fieldname": "naming_series",
+      "fieldtype": "Select",
+      "hidden": 1,
+      "label": "Series",
+      "options": "ADR-.#####"
+    },
+    {
+      "fieldname": "agent",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "Agent",
+      "options": "User",
+      "reqd": 1
+    },
+    {
+      "fieldname": "report_date",
+      "fieldtype": "Date",
+      "in_list_view": 1,
+      "in_standard_filter": 1,
+      "label": "Date",
+      "reqd": 1
+    },
+    {
+      "fieldname": "channel_company",
+      "fieldtype": "Link",
+      "in_standard_filter": 1,
+      "label": "Channel Company",
+      "options": "Atlas Channel Company"
+    },
+    {
+      "default": "0",
+      "fieldname": "calls",
+      "fieldtype": "Int",
+      "in_list_view": 1,
+      "label": "Calls"
+    },
+    {
+      "default": "0",
+      "fieldname": "visits",
+      "fieldtype": "Int",
+      "label": "Visits"
+    },
+    {
+      "default": "0",
+      "fieldname": "leads",
+      "fieldtype": "Int",
+      "label": "Leads"
+    },
+    {
+      "default": "0",
+      "fieldname": "holds",
+      "fieldtype": "Int",
+      "label": "Holds"
+    },
+    {
+      "default": "0",
+      "fieldname": "bookings",
+      "fieldtype": "Int",
+      "label": "Bookings"
+    },
+    {
+      "default": "0",
+      "fieldname": "cancellations",
+      "fieldtype": "Int",
+      "label": "Cancellations"
+    },
+    {
+      "fieldname": "notes",
+      "fieldtype": "Small Text",
+      "label": "Notes"
+    },
+    {
+      "fieldname": "report_key",
+      "fieldtype": "Data",
+      "hidden": 1,
+      "label": "Report key",
+      "no_copy": 1,
+      "read_only": 1,
+      "unique": 1
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "links": [],
+  "modified": "2026-08-24 22:00:00",
+  "module": "Channel",
+  "name": "Atlas Daily Report",
+  "naming_rule": "By \"Naming Series\" field",
+  "owner": "Administrator",
+  "permissions": [
+    {"create": 1, "delete": 1, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "Atlas Developer Admin", "share": 1, "write": 1},
+    {"create": 1, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "Atlas Project Director", "share": 1, "write": 1},
+    {"create": 1, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "Atlas Sales Manager", "write": 1},
+    {"create": 1, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "Atlas Channel Admin", "write": 1},
+    {"create": 1, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "Atlas Channel Agent", "write": 1}
+  ],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "track_changes": 1
+}
