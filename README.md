@@ -6,26 +6,28 @@ Real-estate ERP as a **native custom Frappe app** on ERPNext **v16**. One system
 
 Locked: module map, roles, invariants (`docs/locked-structure.md`). Stack: Frappe + ERPNext `version-16` (Python 3.14) — `docs/adr/0008-erpnext-v16.md`.
 
-**Scaffolded on main**
+**Modules on main** (`erpatlas/modules.txt`)
 
-| Area | What’s in the tree |
+| Module | What’s in the tree |
 |---|---|
-| Property Inventory | Atlas Unit / Tower / Hold / Channel Company; CAS lock |
+| Property Inventory | Unit / Tower / Hold / Channel Company; CAS lock |
 | Approvals | Unified `Atlas Approval` queue |
-| Booking | Atlas Booking + payment steps + Commission Accrued; Active → SO; collect (GST math) |
-| Books helpers | `payment_gst.py`, SO mixin, posting stubs |
-| Command (CEO) | Desk page + Workspace; P0 KPIs (units, holds, approvals aging) |
-| Research | `docs/research/01`–`06` (v16, Booking↔SO, commission/TDS, CAS, isolation, GST) |
+| Booking | Booking + payment steps + Commission Accrued; Active → SO; collect |
+| Handover | Handover Case + Snag; possession gates |
+| Channel | Daily Report + hold gate |
+| Pipeline | Lead ingest / score hooks |
+| Documents | Controlled Document + Export Grant (four-eyes) |
+| Command | CEO Desk page; KPIs + risk helpers |
+| Books | `payment_gst`, commission adapter, SO mixin |
 
-**Next (pick one branch at a time)**
+**Research:** `docs/research/01`–`06`.
 
-1. Handover & Possession (OC + snags + full collection → Unit Sold)
-2. Commission JE / TDS Purchase Invoice (research/03) — still no PE from Approvals
-3. Channel role fixtures + daily-report gate (research/05)
-4. Command P1 money KPIs (booking value, collections from PE)
-5. Command P2 deterministic risk cards
+**Still open / harden next**
 
-Not next unless named: CatBoost, WhatsApp, Tally XML, RERA 70/30, full AI forecasts.
+1. Bench install + site tests (CAS race, Booking→SO on real ERPNext)
+2. Commission JE / TDS PI end-to-end on a site
+3. Command money KPIs + risk thresholds tuned on Atlas Settings
+4. CatBoost external bind, WhatsApp, Tally XML, RERA — only when named
 
 ## Install (bench)
 
@@ -37,16 +39,19 @@ bench --site SITE install-app erpatlas
 
 Requires `erpnext` on version-16. Windows: WSL2.
 
-## Tests (no site required)
+## Sync this folder
 
 ```bat
 cd "D:\work Dir\Atlas-ERP"
+git fetch origin
+git checkout main
+git pull origin main
 python -m pytest tests -q
 ```
 
 ## Grok Build / CLI
 
-- Base brief: `docs/GROK_BUILD.md`
+- Base: `docs/GROK_BUILD.md`
 - CEO Command: `docs/GROK_BUILD_COMMAND.md`
 
 ## Language
