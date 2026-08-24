@@ -34,8 +34,11 @@ Refuse acquire while any item is open or flagged; the reason lists those titles.
 
 Unchanged: due dates, overdue, filed with challan ref. Not RERA 70/30 escrow.
 
+## Atlas Instalment
+
+Ops reminder on a Parcel (due / paid). **Record paid** does not create a Payment Entry and does not post to Tally. ERPNext remains the books.
+
 ## Out of scope here
 
-- EMI schedule (ops, not books)
 - RERA 70/30 bank split
 - Land consideration as a Journal Entry / Payment Entry

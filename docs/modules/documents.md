@@ -2,6 +2,8 @@
 
 **Atlas-3:** register → quarantine → clear → request export → Approvals (Four-eyes approver) → single-use grant → consume.
 
+**Atlas Drawing** is a revision register (draft / IFC / as-built). No viewer. Not a four-eyes original — that stays on Atlas Controlled Document.
+
 **ERPNext:** not Workflow (ADR 0003). Atlas Approval kind `Document export`. Custom **Atlas Controlled Document** and **Atlas Export Grant**.
 
 ## Acceptance

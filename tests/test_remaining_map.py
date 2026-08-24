@@ -6,7 +6,8 @@ from erpatlas.organization.assistant import refuse_execute, stamp_draft
 
 def test_ncr_close_and_vo_amount():
 	assert refuse_close_ncr(kind="rfi", status="open")
-	assert refuse_close_ncr(kind="ncr", status="corrective") is None
+	assert refuse_close_ncr(kind="ncr", status="corrective") 
+	assert refuse_close_ncr(kind="ncr", status="corrective", reinspection_result="Pass") is None
 	assert "amount" in vo_needs_amount("change", None)
 	assert vo_needs_amount("ncr", None) is None
 

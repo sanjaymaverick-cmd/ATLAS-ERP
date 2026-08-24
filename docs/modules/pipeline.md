@@ -24,3 +24,4 @@ Won does **not** create an Atlas Booking in this slice. Booking stays ADR 0007.
 
 - `erpatlas.pipeline.intake.ingest_lead`
 - `erpatlas.pipeline.intake.advance_lead`
+- `erpatlas.pipeline.intake.customer_360` (read-only Lead + Booking + Commission)

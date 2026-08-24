@@ -1,0 +1,29 @@
+{
+  "actions": [],
+  "allow_rename": 0,
+  "autoname": "naming_series:",
+  "creation": "2026-08-25 06:00:00",
+  "doctype": "DocType",
+  "engine": "InnoDB",
+  "field_order": ["naming_series", "company", "title", "amount", "status", "note"],
+  "fields": [
+    {"fieldname": "naming_series", "fieldtype": "Select", "hidden": 1, "options": "ABC-.#####"},
+    {"fieldname": "company", "fieldtype": "Link", "in_list_view": 1, "in_standard_filter": 1, "label": "Legal Entity", "options": "Company", "reqd": 1},
+    {"fieldname": "title", "fieldtype": "Data", "in_list_view": 1, "label": "Title", "reqd": 1},
+    {"fieldname": "amount", "fieldtype": "Currency", "in_list_view": 1, "label": "Amount"},
+    {"default": "open", "fieldname": "status", "fieldtype": "Select", "in_list_view": 1, "label": "Status", "options": "open\nreview\nreconciled\nexception", "reqd": 1},
+    {"fieldname": "note", "fieldtype": "Small Text", "label": "Acceptance note"}
+  ],
+  "module": "Books",
+  "name": "Atlas Books Case",
+  "naming_rule": "By \"Naming Series\" field",
+  "owner": "Administrator",
+  "permissions": [
+    {"create": 1, "delete": 1, "read": 1, "write": 1, "role": "Atlas Developer Admin"},
+    {"create": 1, "read": 1, "write": 1, "role": "Atlas Finance"},
+    {"read": 1, "role": "Atlas Project Director"}
+  ],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "track_changes": 1
+}

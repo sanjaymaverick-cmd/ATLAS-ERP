@@ -1,0 +1,21 @@
+{
+  "content": null,
+  "creation": "2026-08-25 06:00:00",
+  "docstatus": 0,
+  "doctype": "Page",
+  "idx": 0,
+  "modified": "2026-08-25 06:00:00",
+  "module": "Sales Analytics",
+  "name": "sales-analytics",
+  "owner": "Administrator",
+  "page_name": "sales-analytics",
+  "roles": [
+    {"role": "Atlas Developer Admin"},
+    {"role": "Atlas Project Director"},
+    {"role": "Atlas Sales Manager"},
+    {"role": "Atlas Finance"}
+  ],
+  "standard": "Yes",
+  "system_page": 0,
+  "title": "Sales Analytics"
+}

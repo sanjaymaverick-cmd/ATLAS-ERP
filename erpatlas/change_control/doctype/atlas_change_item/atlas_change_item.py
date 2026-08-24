@@ -2,7 +2,12 @@ import frappe
 from frappe import _
 from frappe.model.document import Document
 
-from erpatlas.change_control.flow import refuse_close_ncr, vo_needs_amount
+from erpatlas.change_control.flow import (
+	refuse_close_ncr,
+	refuse_respond,
+	status_after_respond,
+	vo_needs_amount,
+)
 
 
 class AtlasChangeItem(Document):
@@ -15,12 +20,27 @@ class AtlasChangeItem(Document):
 @frappe.whitelist()
 def close_ncr(name: str):
 	doc = frappe.get_doc("Atlas Change Item", name)
-	err = refuse_close_ncr(kind=doc.kind, status=doc.status)
+	result = None
+	if doc.reinspection:
+		result = frappe.db.get_value("Atlas Inspection", doc.reinspection, "result")
+	err = refuse_close_ncr(kind=doc.kind, status=doc.status, reinspection_result=result)
 	if err:
 		frappe.throw(_(err))
 	doc.status = "closed"
 	doc.save()
 	return {"status": "closed"}
+
+
+@frappe.whitelist()
+def respond(name: str, response: str):
+	doc = frappe.get_doc("Atlas Change Item", name)
+	err = refuse_respond(kind=doc.kind, response=response, status=doc.status)
+	if err:
+		frappe.throw(_(err))
+	doc.response = response
+	doc.status = status_after_respond(doc.kind)
+	doc.save()
+	return {"status": doc.status, "creates_payment_entry": False}
 
 
 @frappe.whitelist()
