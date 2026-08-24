@@ -55,7 +55,7 @@ class AtlasUnitHold(Document):
 
 
 def _has_today_report() -> bool:
-	"""Channel Daily Report plugs `atlas_has_today_report`. Until that hook exists the gate is open."""
+	"""Channel Daily Report plugs `atlas_has_today_report`."""
 	hook = frappe.get_hooks("atlas_has_today_report")
 	if not hook:
 		return True

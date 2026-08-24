@@ -1,0 +1,13 @@
+[
+  {"doctype": "Role", "name": "Atlas Developer Admin", "role_name": "Atlas Developer Admin", "desk_access": 1, "is_custom": 1},
+  {"doctype": "Role", "name": "Atlas Project Director", "role_name": "Atlas Project Director", "desk_access": 1, "is_custom": 1},
+  {"doctype": "Role", "name": "Atlas Sales Manager", "role_name": "Atlas Sales Manager", "desk_access": 1, "is_custom": 1},
+  {"doctype": "Role", "name": "Atlas Channel Admin", "role_name": "Atlas Channel Admin", "desk_access": 1, "is_custom": 1},
+  {"doctype": "Role", "name": "Atlas Channel Agent", "role_name": "Atlas Channel Agent", "desk_access": 1, "is_custom": 1},
+  {"doctype": "Role", "name": "Atlas Commercial", "role_name": "Atlas Commercial", "desk_access": 1, "is_custom": 1},
+  {"doctype": "Role", "name": "Atlas Finance", "role_name": "Atlas Finance", "desk_access": 1, "is_custom": 1},
+  {"doctype": "Role", "name": "Atlas Site", "role_name": "Atlas Site", "desk_access": 1, "is_custom": 1},
+  {"doctype": "Role", "name": "Atlas Stores", "role_name": "Atlas Stores", "desk_access": 1, "is_custom": 1},
+  {"doctype": "Role", "name": "Atlas Land Legal", "role_name": "Atlas Land Legal", "desk_access": 1, "is_custom": 1},
+  {"doctype": "Role", "name": "Atlas Documents", "role_name": "Atlas Documents", "desk_access": 1, "is_custom": 1}
+]

@@ -9,6 +9,24 @@ required_apps = ["erpnext"]
 
 after_install = "erpatlas.setup.install.after_install"
 
+fixtures = [
+	{"dt": "Role", "filters": [["name", "in", [
+		"Atlas Developer Admin",
+		"Atlas Project Director",
+		"Atlas Sales Manager",
+		"Atlas Channel Admin",
+		"Atlas Channel Agent",
+		"Atlas Commercial",
+		"Atlas Finance",
+		"Atlas Site",
+		"Atlas Stores",
+		"Atlas Land Legal",
+		"Atlas Documents",
+	]]]},
+]
+
+atlas_has_today_report = ["erpatlas.channel.adapter.has_today_report"]
+
 export_python_type_annotations = True
 
 # Desk (Frappe v16)
@@ -51,6 +69,7 @@ permission_query_conditions = {
 	"Atlas Commission": "erpatlas.booking.permissions.commission_query",
 	"Atlas Handover Case": "erpatlas.handover.permissions.handover_query",
 	"Atlas Snag": "erpatlas.handover.permissions.snag_query",
+	"Atlas Daily Report": "erpatlas.channel.permissions.daily_report_query",
 }
 
 has_permission = {
@@ -61,4 +80,5 @@ has_permission = {
 	"Atlas Commission": "erpatlas.booking.permissions.has_commission_permission",
 	"Atlas Handover Case": "erpatlas.handover.permissions.has_handover_permission",
 	"Atlas Snag": "erpatlas.handover.permissions.has_snag_permission",
+	"Atlas Daily Report": "erpatlas.channel.permissions.has_daily_report_permission",
 }

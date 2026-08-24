@@ -3,4 +3,5 @@ Property Inventory
 Approvals
 Booking
 Handover
+Channel
 Command

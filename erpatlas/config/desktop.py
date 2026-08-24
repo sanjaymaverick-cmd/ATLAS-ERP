@@ -24,6 +24,11 @@ def get_data():
 			"label": _("Keys and snags"),
 		},
 		{
+			"module_name": "Channel",
+			"type": "module",
+			"label": _("Channel companies"),
+		},
+		{
 			"module_name": "Command",
 			"type": "module",
 			"label": _("Command"),

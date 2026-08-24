@@ -66,16 +66,16 @@ One system: custom Frappe app `erpatlas` on ERPNext version-16. Full Atlas-3 fea
 - books: payment_gst, posting stubs, Sales Order mixin
 - Command P0 + P1: Desk page; unit/hold/approval KPIs; Booking/PE money (value, collections MTD, plan vs actual, commission liability)
 - Handover: Occupancy Certificate + snags + full collection → unit Sold / booking Possession
+- Channel: Atlas Daily Report gate on hold; Role fixtures
 - Research docs 01–06; docs/modules/command.md, booking.md
 
 ## Next implementation slice (unless the user names another)
 
 Prefer one of:
 
-1. Channel fixtures — Role/DocPerm fixtures; User Permission seed pattern; daily-report gate before hold (research/05)
-2. Commission books — accrual JE optional; Approved → Purchase Invoice + TDS (Tax Withholding); PE only from Finance (research/03)
-3. Commercial — Supplier atlas_stage + GSTIN; no PO until Active
-4. Command P2 — deterministic risk cards + Atlas Settings thresholds
+1. Commission books — accrual JE optional; Approved → Purchase Invoice + TDS (Tax Withholding); PE only from Finance (research/03)
+2. Commercial — Supplier atlas_stage + GSTIN; no PO until Active
+3. Command P2 — deterministic risk cards + Atlas Settings thresholds
 
 Do not implement CatBoost, WhatsApp, Tally import, or RERA 70/30 unless named.
 
