@@ -6,7 +6,7 @@ Implementable DocType designs. High-level map is locked in `docs/locked-structur
 |---|---|---|
 | Property Inventory | [property-inventory.md](property-inventory.md) | Scaffolded |
 | Approvals | [approvals.md](approvals.md) | Scaffolded |
-| Command (CEO) | [command.md](command.md) | P0–P4 (snapshot outlook + brief). P5 board PDF next |
+| Command (CEO) | [command.md](command.md) | P0–P5 (board-pack PDF from Command JSON) |
 | Capital | Atlas Funding Sanction | Loan % + equity % = 100 |
 | Audit | Atlas Audit Event | Append-only trail |
 | Channel & Partner | [channel.md](channel.md) | Daily report gate + Role fixtures. User Permission still site data |

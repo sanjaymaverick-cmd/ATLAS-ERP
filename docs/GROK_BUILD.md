@@ -64,7 +64,7 @@ One system: custom Frappe app `erpatlas` on ERPNext version-16. Full Atlas-3 fea
 - Approvals: unified Atlas Approval queue
 - Booking: Atlas Booking + payment steps + Commission Accrued; Active → SO; collect via payment_gst
 - books: payment_gst, posting stubs, Sales Order mixin
-- Command P0–P3: Desk page; risk cards; daily KPI snapshot + portfolio heat map
+- Command P0–P5: Desk page; risk cards; snapshot + heat map; linear outlook; board-pack PDF
 - Handover: Occupancy Certificate + snags + full collection → unit Sold / booking Possession
 - Channel: Atlas Daily Report gate on hold; Role fixtures
 - Commission books: optional accrual JE; Purchase Invoice after Approved; never PE from Approvals
@@ -79,6 +79,7 @@ One system: custom Frappe app `erpatlas` on ERPNext version-16. Full Atlas-3 fea
 - Organization: owner decisions; assistant draft-only
 - Communications: WhatsApp template registry (no send)
 - Command P4: linear snapshot outlook + narrative brief (not CatBoost)
+- Command P5: board-pack PDF from Command JSON (`get_pdf`; as-of + model id)
 - Capital: funding sanction split 70/30 loan/equity as percents summing to 100
 - Audit: append-only Atlas Audit Event
 - Research docs 01–06; docs/modules/command.md, booking.md
@@ -87,9 +88,8 @@ One system: custom Frappe app `erpatlas` on ERPNext version-16. Full Atlas-3 fea
 
 Prefer one of:
 
-1. Command P5 board-pack PDF
-2. Parcel / diligence pack (Land still has obligations only)
-3. Quantity variance (Controls still receive/issue only)
+1. Parcel / diligence pack (Land still has obligations only)
+2. Quantity variance (Controls still receive/issue only)
 
 Do not implement CatBoost, WhatsApp, Tally import, or RERA 70/30 unless named.
 
