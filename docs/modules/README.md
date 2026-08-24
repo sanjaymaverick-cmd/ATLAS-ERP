@@ -6,7 +6,7 @@ Implementable DocType designs. High-level map is locked in `docs/locked-structur
 |---|---|---|
 | Property Inventory | [property-inventory.md](property-inventory.md) | Scaffolded |
 | Approvals | [approvals.md](approvals.md) | Scaffolded |
-| Command (CEO) | [command.md](command.md) | P0–P2 (counts, Booking money, deterministic risk). P3 snapshot next |
+| Command (CEO) | [command.md](command.md) | P0–P3 (counts, money, risk, snapshot + heat map). P4 forecasts next |
 | Channel & Partner | [channel.md](channel.md) | Daily report gate + Role fixtures. User Permission still site data |
 | Lead & Pipeline | [pipeline.md](pipeline.md) | Native Lead ingest/dedup; CatBoost external |
 | Booking | [booking.md](booking.md) | Scaffolded — Active → SO, collect, commission Accrued |

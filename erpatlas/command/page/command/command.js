@@ -104,6 +104,30 @@ atlas.CommandBoard = class CommandBoard {
 							: `<p class="text-muted">${__("No risk cards in this filter.")}</p>`
 					}</div>
 				</section>`;
+		const portfolio = data.portfolio || [];
+		const spark = data.sparkline || [];
+		const heat_html = `<section class="atlas-command-strip">
+					<h3>${__("Portfolio")}</h3>
+					<p class="text-muted">${__("Heat map from live diary, failed work, Approvals. Advise only.")}</p>
+					${spark.length ? `<p class="text-muted">${__("Live booking value strip")}: ${spark.join(" · ")}</p>` : ""}
+					<div class="atlas-command-kpis">
+						${
+							portfolio.length
+								? portfolio
+										.map((row) => {
+											const tone =
+												row.health === "red" ? "is-stale" : row.health === "amber" ? "is-warn" : "";
+											return kpi(
+												frappe.utils.escape_html(row.project || ""),
+												frappe.utils.escape_html((row.drivers || [])[0] || row.health),
+												tone,
+											);
+										})
+										.join("")
+								: `<p class="text-muted">${__("No projects in this filter.")}</p>`
+						}
+					</div>
+				</section>`;
 		const money = data.money || {};
 		const money_html = data.shows_money
 			? `<section class="atlas-command-strip">
@@ -133,6 +157,7 @@ atlas.CommandBoard = class CommandBoard {
 					<div class="atlas-command-card-list">${exception_html}</div>
 				</section>
 				${risk_html}
+				${heat_html}
 				${money_html}
 				<section class="atlas-command-strip">
 					<h3>${__("Inventory and holds")}</h3>

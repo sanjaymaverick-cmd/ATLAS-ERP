@@ -1,0 +1,38 @@
+{
+  "actions": [],
+  "allow_rename": 0,
+  "autoname": "format:SNAP-{as_of}",
+  "creation": "2026-08-25 01:00:00",
+  "doctype": "DocType",
+  "engine": "InnoDB",
+  "field_order": ["as_of", "payload"],
+  "fields": [
+    {
+      "fieldname": "as_of",
+      "fieldtype": "Date",
+      "in_list_view": 1,
+      "label": "As of",
+      "reqd": 1,
+      "unique": 1
+    },
+    {
+      "fieldname": "payload",
+      "fieldtype": "Long Text",
+      "label": "KPI JSON"
+    }
+  ],
+  "index_web_pages_for_search": 0,
+  "links": [],
+  "modified": "2026-08-25 01:00:00",
+  "module": "Command",
+  "name": "Atlas KPI Snapshot",
+  "naming_rule": "Expression",
+  "owner": "Administrator",
+  "permissions": [
+    {"create": 1, "delete": 1, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "Atlas Developer Admin", "share": 1, "write": 1},
+    {"email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "Atlas Project Director"}
+  ],
+  "sort_field": "as_of",
+  "sort_order": "DESC",
+  "track_changes": 1
+}
