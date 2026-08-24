@@ -35,6 +35,13 @@ def raise_approval(
 		)
 		if exists:
 			frappe.throw("This hold is already waiting in Approvals.")
+	if kind == "Document export" and ref_name:
+		exists = frappe.db.exists(
+			"Atlas Approval",
+			{"kind": "Document export", "ref_name": ref_name, "status": "Pending"},
+		)
+		if exists:
+			frappe.throw("This export is already waiting in Approvals.")
 	doc = frappe.get_doc(
 		{
 			"doctype": "Atlas Approval",

@@ -27,6 +27,10 @@ def _ensure_handlers():
 		from erpatlas.commercial.vendor_handler import on_vendor
 
 		register_handler("Vendor", on_vendor)
+	if "Document export" not in HANDLERS:
+		from erpatlas.documents.export_handler import on_document_export
+
+		register_handler("Document export", on_document_export)
 
 
 class AtlasApproval(Document):

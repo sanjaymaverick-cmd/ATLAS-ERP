@@ -1,0 +1,96 @@
+{
+  "actions": [],
+  "allow_rename": 0,
+  "autoname": "naming_series:",
+  "creation": "2026-08-24 23:00:00",
+  "doctype": "DocType",
+  "engine": "InnoDB",
+  "field_order": [
+    "naming_series",
+    "document",
+    "project",
+    "revision",
+    "status",
+    "requested_by",
+    "used_by",
+    "used_at"
+  ],
+  "fields": [
+    {
+      "fieldname": "naming_series",
+      "fieldtype": "Select",
+      "hidden": 1,
+      "label": "Series",
+      "options": "AEG-.#####"
+    },
+    {
+      "fieldname": "document",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "in_standard_filter": 1,
+      "label": "Document",
+      "options": "Atlas Controlled Document",
+      "reqd": 1
+    },
+    {
+      "fieldname": "project",
+      "fieldtype": "Link",
+      "in_standard_filter": 1,
+      "label": "Project",
+      "options": "Project",
+      "read_only": 1
+    },
+    {
+      "fieldname": "revision",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "Revision",
+      "read_only": 1
+    },
+    {
+      "default": "Pending",
+      "fieldname": "status",
+      "fieldtype": "Select",
+      "in_list_view": 1,
+      "in_standard_filter": 1,
+      "label": "Status",
+      "options": "Pending\nGranted\nUsed\nRejected\nExpired",
+      "reqd": 1
+    },
+    {
+      "fieldname": "requested_by",
+      "fieldtype": "Link",
+      "label": "Requested by",
+      "options": "User",
+      "read_only": 1
+    },
+    {
+      "fieldname": "used_by",
+      "fieldtype": "Link",
+      "label": "Used by",
+      "options": "User",
+      "read_only": 1
+    },
+    {
+      "fieldname": "used_at",
+      "fieldtype": "Datetime",
+      "label": "Used at",
+      "read_only": 1
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "links": [],
+  "modified": "2026-08-24 23:00:00",
+  "module": "Documents",
+  "name": "Atlas Export Grant",
+  "naming_rule": "By \"Naming Series\" field",
+  "owner": "Administrator",
+  "permissions": [
+    {"create": 1, "delete": 1, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "Atlas Developer Admin", "share": 1, "write": 1},
+    {"create": 1, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "Atlas Project Director", "write": 1},
+    {"create": 1, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "Atlas Documents", "write": 1}
+  ],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "track_changes": 1
+}

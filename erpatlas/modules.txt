@@ -5,4 +5,5 @@ Booking
 Handover
 Channel
 Pipeline
+Documents
 Command

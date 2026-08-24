@@ -34,6 +34,11 @@ def get_data():
 			"label": _("Leads"),
 		},
 		{
+			"module_name": "Documents",
+			"type": "module",
+			"label": _("Originals"),
+		},
+		{
 			"module_name": "Command",
 			"type": "module",
 			"label": _("Command"),
