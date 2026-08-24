@@ -1,1 +1,1 @@
-# Controls: materials. Cannot issue more than accepted receipts.
+# Controls: materials and quantity variance. Cannot issue more than accepted receipts.

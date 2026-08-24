@@ -88,6 +88,18 @@ A defect on a Unit that must be closed before keys.
 **Possession**:
 Keys given. Blocked while Snags are open, Occupancy Certificate is missing, or the payment plan is not fully collected. Moves the Unit to Sold.
 
+### Controls
+
+**Drawing quantity**:
+How much material the drawings say you need.
+_Avoid_: BIM as the only on-screen label
+
+**Site measure**:
+What was measured on site.
+
+**Quantity variance**:
+Drawing quantity versus site measure. Status is provisional, variance, or approved. Approve locks the numbers; it is not a Payment Entry.
+
 ### Seats
 
 **Atlas Developer Admin**:

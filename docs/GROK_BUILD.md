@@ -74,7 +74,7 @@ One system: custom Frappe app `erpatlas` on ERPNext version-16. Full Atlas-3 fea
 - Site: diary seal + inspections; fail raises NCR (Change Item)
 - Command P3: KPI snapshot + portfolio heat map
 - Quotations: lowest Active-vendor quote may become a PO
-- Controls: materials receive/issue
+- Controls: materials receive/issue; drawing vs site quantity variance (approve locks)
 - Land: parcels + standard title pack; acquire blocked until diligence is clear; obligations (not 70/30 split)
 - Organization: owner decisions; assistant draft-only
 - Communications: WhatsApp template registry (no send)
@@ -86,11 +86,9 @@ One system: custom Frappe app `erpatlas` on ERPNext version-16. Full Atlas-3 fea
 
 ## Next implementation slice (unless the user names another)
 
-Prefer one of:
+Command P0–P5, Booking, Land pack, and Controls variance are on main. Prefer the next domain slice the user names.
 
-1. Quantity variance (Controls still receive/issue only)
-
-Do not implement CatBoost, WhatsApp, Tally import, or RERA 70/30 unless named.
+Do not implement CatBoost, WhatsApp send, Tally import, or RERA 70/30 unless named.
 
 ## Language (do not mix)
 
