@@ -117,6 +117,8 @@ Start with **deterministic thresholds** in Atlas Settings. ML scores may layer l
 
 P0 does not require Booking. P1+ does.
 
+**P1:** Atlas Booking is on `main` (PR #3). Next Command slice can wire collections MTD, booking value, and plan vs actual. Do not invent a second booking model.
+
 ## Out of scope for Command code
 
 - Rebuilding Atlas Booking, Handover, or CatBoost inside this page

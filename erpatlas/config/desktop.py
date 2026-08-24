@@ -18,4 +18,9 @@ def get_data():
 			"type": "module",
 			"label": _("Bookings"),
 		},
+		{
+			"module_name": "Command",
+			"type": "module",
+			"label": _("Command"),
+		},
 	]

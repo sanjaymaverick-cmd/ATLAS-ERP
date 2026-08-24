@@ -1,0 +1,40 @@
+{
+  "charts": [],
+  "content": "[{\"id\":\"command-header\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Command</span>\",\"col\":12}}]",
+  "creation": "2026-08-24 20:00:00",
+  "doctype": "Workspace",
+  "hide_custom": 0,
+  "icon": "dashboard",
+  "idx": 0,
+  "is_hidden": 0,
+  "label": "Command",
+  "links": [],
+  "modified": "2026-08-24 20:00:00",
+  "module": "Command",
+  "name": "Command",
+  "number_cards": [],
+  "owner": "Administrator",
+  "parent_page": "",
+  "public": 1,
+  "restrict_to_domain": "",
+  "roles": [
+    {"role": "Atlas Developer Admin"},
+    {"role": "Atlas Project Director"}
+  ],
+  "sequence_id": 0.1,
+  "shortcuts": [
+    {
+      "color": "Red",
+      "label": "Command",
+      "link_to": "command",
+      "type": "Page"
+    },
+    {
+      "color": "Grey",
+      "label": "Approvals",
+      "link_to": "Atlas Approval",
+      "type": "DocType"
+    }
+  ],
+  "title": "Command"
+}
