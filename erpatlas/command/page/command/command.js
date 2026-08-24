@@ -77,6 +77,26 @@ atlas.CommandBoard = class CommandBoard {
 
 		const kpi = (label, value, tone) =>
 			`<div class="atlas-command-kpi ${tone || ""}"><span class="atlas-command-kpi-label">${label}</span><span class="atlas-command-kpi-value">${value}</span></div>`;
+		const inr = (value) => frappe.format(value || 0, { fieldtype: "Currency" });
+		const money = data.money || {};
+		const money_html = data.shows_money
+			? `<section class="atlas-command-strip">
+					<h3>${__("Sales and collections")}</h3>
+					<p class="text-muted">${__("From Atlas Booking and Payment Entry. Not bank cash, not runway.")}</p>
+					<div class="atlas-command-kpis">
+						${kpi(__("Live booking value"), inr(money.booking_value_live))}
+						${kpi(__("Booking value MTD"), inr(money.booking_value_mtd))}
+						${kpi(__("Collected MTD"), inr(money.collections_mtd))}
+						${kpi(__("Plan"), inr(money.plan_gross))}
+						${kpi(__("Collected on plan"), inr(money.plan_collected))}
+						${kpi(__("Receivable"), inr(money.receivable), money.receivable > 0 ? "is-warn" : "")}
+						${kpi(__("Commission accrued"), inr(money.commission_liability))}
+						${kpi(__("Hold → book"), money.hold_conversion_pct == null ? "—" : money.hold_conversion_pct + "%")}
+						${kpi(__("Channel bookings"), money.channel_bookings || 0)}
+						${kpi(__("In-house bookings"), money.in_house_bookings || 0)}
+					</div>
+				</section>`
+			: "";
 
 		this.page.main.html(`
 			<div class="atlas-command">
@@ -86,6 +106,7 @@ atlas.CommandBoard = class CommandBoard {
 					<p class="text-muted">${__("Pending Approvals, oldest first. Past {0} days is stale.", [sla])}</p>
 					<div class="atlas-command-card-list">${exception_html}</div>
 				</section>
+				${money_html}
 				<section class="atlas-command-strip">
 					<h3>${__("Inventory and holds")}</h3>
 					<div class="atlas-command-kpis">

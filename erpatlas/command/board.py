@@ -77,6 +77,7 @@ def get_command(company: str | None = None, project: str | None = None) -> dict:
 		],
 		order_by="aging_days desc",
 	)
+	bookings, steps, payments, commissions = _booking_rows(project_names)
 	payload = build_command(
 		units=units,
 		holds=holds,
@@ -85,6 +86,63 @@ def get_command(company: str | None = None, project: str | None = None) -> dict:
 		project_names=None,
 		sla_days=DEFAULT_APPROVAL_SLA_DAYS,
 		hold_expiring_days=DEFAULT_HOLD_EXPIRING_DAYS,
+		bookings=bookings,
+		steps=steps,
+		payments=payments,
+		commissions=commissions,
 	)
 	payload["filters"] = {"company": company, "project": project}
 	return payload
+
+
+def _booking_rows(project_names: set[str] | None) -> tuple[list, list, list, list]:
+	if not frappe.db.exists("DocType", "Atlas Booking"):
+		return [], [], [], []
+	filters: dict = {}
+	if project_names is not None:
+		filters["project"] = ["in", list(project_names)]
+	bookings = frappe.get_all(
+		"Atlas Booking",
+		filters=filters,
+		fields=[
+			"name",
+			"status",
+			"total_consideration",
+			"collected",
+			"project",
+			"channel_company",
+			"creation",
+		],
+	)
+	if not bookings:
+		return [], [], [], []
+	parents = [row.name for row in bookings]
+	project_of = {row.name: row.project for row in bookings}
+	steps = frappe.get_all(
+		"Atlas Booking Payment Step",
+		filters={"parent": ["in", parents]},
+		fields=["parent", "gross", "collected"],
+	)
+	for step in steps:
+		step["project"] = project_of.get(step.parent)
+	commissions = []
+	if frappe.db.exists("DocType", "Atlas Commission"):
+		cfilters = {"status": ["in", ["Accrued", "Approved"]]}
+		if project_names is not None:
+			cfilters["project"] = ["in", list(project_names)]
+		commissions = frappe.get_all(
+			"Atlas Commission",
+			filters=cfilters,
+			fields=["name", "amount", "status", "project", "booking"],
+		)
+	payments = []
+	if frappe.get_meta("Payment Entry").has_field("atlas_booking"):
+		payments = frappe.get_all(
+			"Payment Entry",
+			filters={"docstatus": 1, "atlas_booking": ["in", parents]},
+			fields=["name", "paid_amount", "posting_date", "atlas_booking", "project"],
+		)
+		for pe in payments:
+			if not pe.get("project"):
+				pe["project"] = project_of.get(pe.get("atlas_booking"))
+	return bookings, steps, payments, commissions

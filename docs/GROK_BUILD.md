@@ -64,7 +64,7 @@ One system: custom Frappe app `erpatlas` on ERPNext version-16. Full Atlas-3 fea
 - Approvals: unified Atlas Approval queue
 - Booking: Atlas Booking + payment steps + Commission Accrued; Active → SO; collect via payment_gst
 - books: payment_gst, posting stubs, Sales Order mixin
-- Command P0: Desk page + Workspace; unit/hold/approval KPIs + exception list
+- Command P0 + P1: Desk page; unit/hold/approval KPIs; Booking/PE money (value, collections MTD, plan vs actual, commission liability)
 - Research docs 01–06; docs/modules/command.md, booking.md
 
 ## Next implementation slice (unless the user names another)
@@ -72,9 +72,9 @@ One system: custom Frappe app `erpatlas` on ERPNext version-16. Full Atlas-3 fea
 Prefer one of:
 
 1. Handover & Possession — OC + snags + full collection → Unit Sold / Booking Possession
-2. Commission books — accrual JE optional; Approved → Purchase Invoice + TDS (Tax Withholding); PE only from Finance (research/03)
-3. Channel fixtures — Role/DocPerm fixtures; User Permission seed pattern; daily-report gate before hold (research/05)
-4. Command P1 — money KPIs from Booking / SO / PE (collections, booking value)
+2. Channel fixtures — Role/DocPerm fixtures; User Permission seed pattern; daily-report gate before hold (research/05)
+3. Commission books — accrual JE optional; Approved → Purchase Invoice + TDS (Tax Withholding); PE only from Finance (research/03)
+4. Commercial — Supplier atlas_stage + GSTIN; no PO until Active
 5. Command P2 — deterministic risk cards + Atlas Settings thresholds
 
 Do not implement CatBoost, WhatsApp, Tally import, or RERA 70/30 unless named.

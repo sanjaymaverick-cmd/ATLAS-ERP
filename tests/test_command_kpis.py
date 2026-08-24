@@ -92,8 +92,73 @@ def test_aging_falls_back_to_creation_date():
 	assert board["approvals"]["past_sla"] == 1
 
 
-def test_command_never_exposes_cash_on_p0():
+def test_command_never_exposes_bank_cash_or_runway():
 	board = build_command(units=[], holds=[], approvals=[], today="2026-08-24")
 	assert board["shows_cash"] is False
 	assert "runway" not in board
-	assert "cash" not in board
+	assert "cash" not in board["money"]
+
+
+def test_booking_money_mtd_plan_and_commission_liability():
+	from erpatlas.books.payment_gst import money
+
+	board = build_command(
+		units=[],
+		holds=[
+			{"status": "Booked", "project": "Lake"},
+			{"status": "Released", "project": "Lake"},
+			{"status": "Held", "until": "2026-08-28", "project": "Lake"},
+		],
+		approvals=[],
+		today="2026-08-24",
+		bookings=[
+			{
+				"name": "ABK-1",
+				"status": "Active",
+				"total_consideration": "1050000",
+				"collected": "105000",
+				"project": "Lake",
+				"channel_company": "Pink City",
+				"creation": "2026-08-10",
+			},
+			{
+				"name": "ABK-2",
+				"status": "Cancelled",
+				"total_consideration": "900000",
+				"collected": "0",
+				"project": "Lake",
+				"creation": "2026-08-11",
+			},
+			{
+				"name": "ABK-3",
+				"status": "Active",
+				"total_consideration": "500000",
+				"collected": "0",
+				"project": "Lake",
+				"channel_company": "",
+				"creation": "2026-07-01",
+			},
+		],
+		steps=[
+			{"parent": "ABK-1", "project": "Lake", "gross": "1050000", "collected": "105000"},
+			{"parent": "ABK-3", "project": "Lake", "gross": "500000", "collected": "0"},
+		],
+		payments=[{"posting_date": "2026-08-12", "paid_amount": "105000", "project": "Lake"}],
+		commissions=[
+			{"amount": "20000", "status": "Accrued", "project": "Lake"},
+			{"amount": "1000", "status": "Paid", "project": "Lake"},
+		],
+	)
+	m = board["money"]
+	assert m["booking_value_live"] == money("1550000")
+	assert m["booking_value_mtd"] == money("1050000")
+	assert m["collections_mtd"] == money("105000")
+	assert m["plan_gross"] == money("1550000")
+	assert m["plan_collected"] == money("105000")
+	assert m["receivable"] == money("1445000")
+	assert m["commission_liability"] == money("20000")
+	assert m["hold_conversion_pct"] == money("50")
+	assert m["channel_bookings"] == 1
+	assert m["in_house_bookings"] == 1
+	assert board["shows_money"] is True
+	assert board["shows_cash"] is False
