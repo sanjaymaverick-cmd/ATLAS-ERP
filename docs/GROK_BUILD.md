@@ -71,15 +71,16 @@ One system: custom Frappe app `erpatlas` on ERPNext version-16. Full Atlas-3 fea
 - Commercial: Supplier atlas_stage; GSTIN required; no PO until Active
 - Pipeline: native Lead ingest/dedup; CatBoost payload external only
 - Documents: four-eyes Export Grant, single-use consume
+- Site: diary seal + inspections; fail raises NCR (Change Item)
 - Research docs 01–06; docs/modules/command.md, booking.md
 
 ## Next implementation slice (unless the user names another)
 
 Prefer one of:
 
-1. Site diary / inspections
-2. Command P3 — daily KPI snapshot / portfolio heat map
-3. Quotations / RFQ → PO
+1. Command P3 — daily KPI snapshot / portfolio heat map
+2. Quotations / RFQ → PO
+3. Controls (materials)
 
 Do not implement CatBoost, WhatsApp, Tally import, or RERA 70/30 unless named.
 

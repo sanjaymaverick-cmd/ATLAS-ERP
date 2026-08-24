@@ -39,6 +39,16 @@ def get_data():
 			"label": _("Originals"),
 		},
 		{
+			"module_name": "Site",
+			"type": "module",
+			"label": _("Site diary"),
+		},
+		{
+			"module_name": "Change Control",
+			"type": "module",
+			"label": _("Failed work"),
+		},
+		{
 			"module_name": "Command",
 			"type": "module",
 			"label": _("Command"),
