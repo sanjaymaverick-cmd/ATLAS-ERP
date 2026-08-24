@@ -80,15 +80,18 @@ One system: custom Frappe app `erpatlas` on ERPNext version-16. Full Atlas-3 fea
 - Communications: WhatsApp template registry (no send)
 - Command P4: linear snapshot outlook + narrative brief (not CatBoost)
 - Command P5: board-pack PDF from Command JSON (`get_pdf`; as-of + model id)
-- Capital: funding sanction split 70/30 loan/equity as percents summing to 100
+- Capital: funding sanction split 70/30 loan/equity as percents summing to 100; budget vs committed
 - Audit: append-only Atlas Audit Event
+- Change Control: RFI response closes; NCR needs Pass re-inspection; VO follows Approval
+- Land instalment: ops paid flag only — not a Payment Entry
+- Drawings: register revision (no viewer)
+- Sales Analytics: funnel + model monitor (CatBoost still external)
+- Books case: recon / exception; Atlas never posts
 - Research docs 01–06; docs/modules/command.md, booking.md
 
 ## Next implementation slice (unless the user names another)
 
-Command P0–P5, Booking, Land pack, and Controls variance are on main. Prefer the next domain slice the user names.
-
-Do not implement CatBoost, WhatsApp send, Tally import, or RERA 70/30 unless named.
+Locked domain slices above are on main. Prefer the next named gap. Still do **not** implement CatBoost, WhatsApp send, Tally import, or RERA 70/30 unless named.
 
 ## Language (do not mix)
 

@@ -88,4 +88,14 @@ def get_data():
 			"type": "module",
 			"label": _("Command"),
 		},
+		{
+			"module_name": "Sales Analytics",
+			"type": "module",
+			"label": _("Sales funnel"),
+		},
+		{
+			"module_name": "Books",
+			"type": "module",
+			"label": _("Company accounts"),
+		},
 	]

@@ -93,7 +93,8 @@
   ],
   "index_web_pages_for_search": 1,
   "links": [
-    {"link_doctype": "Atlas Diligence Item", "link_fieldname": "parcel"}
+    {"link_doctype": "Atlas Diligence Item", "link_fieldname": "parcel"},
+    {"link_doctype": "Atlas Instalment", "link_fieldname": "parcel"}
   ],
   "modified": "2026-08-25 04:00:00",
   "module": "Land Legal",

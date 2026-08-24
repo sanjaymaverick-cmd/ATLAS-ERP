@@ -1,0 +1,39 @@
+.atlas-command {
+	max-width: 72rem;
+	padding: 0 0 2rem;
+}
+.atlas-command-lede {
+	margin: 0 0 1.5rem;
+	color: var(--text-muted);
+}
+.atlas-command h3 {
+	margin: 0 0 0.35rem;
+	font-size: 0.95rem;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+}
+.atlas-command-kpis {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(8.5rem, 1fr));
+	gap: 0.6rem;
+	margin: 0.5rem 0 1.5rem;
+}
+.atlas-command-kpi {
+	padding: 0.75rem 0.85rem;
+	border: 1px solid var(--border-color);
+	border-radius: 6px;
+	background: var(--fg-color);
+}
+.atlas-command-kpi-label {
+	display: block;
+	font-size: 11px;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: var(--text-muted);
+}
+.atlas-command-kpi-value {
+	display: block;
+	font-size: 1.5rem;
+	font-weight: 600;
+	line-height: 1.3;
+}

@@ -16,3 +16,5 @@ Communications
 Capital
 Audit
 Command
+Sales Analytics
+Books

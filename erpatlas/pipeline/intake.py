@@ -123,3 +123,36 @@ def _score(*, source, stage, kind, budget, unit_price) -> dict:
 		except Exception:
 			pass
 	return hybrid_score(source=source, stage=stage, budget=budget, unit_price=unit_price)
+
+
+@frappe.whitelist()
+def customer_360(phone: str):
+	from erpatlas.pipeline.customer import customer_file
+
+	key = normalize_phone(phone)
+	leads = []
+	bookings = []
+	commissions = []
+	if key:
+		leads = frappe.get_all(
+			"Lead",
+			filters={"mobile_no": ["like", f"%{key}%"]},
+			fields=["name", "lead_name", "atlas_stage", "atlas_project", "atlas_unit", "mobile_no"],
+		)
+		if frappe.db.exists("DocType", "Atlas Booking"):
+			units = [row.atlas_unit for row in leads if row.get("atlas_unit")]
+			if units:
+				bookings = frappe.get_all(
+					"Atlas Booking",
+					filters={"unit": ["in", units]},
+					fields=["name", "status", "unit", "project", "collected", "total_consideration"],
+				)
+		if frappe.db.exists("DocType", "Atlas Commission"):
+			parents = [b.name for b in bookings]
+			if parents:
+				commissions = frappe.get_all(
+					"Atlas Commission",
+					filters={"booking": ["in", parents]},
+					fields=["name", "amount", "status", "booking"],
+				)
+	return customer_file(phone=key, leads=leads, bookings=bookings, commissions=commissions)

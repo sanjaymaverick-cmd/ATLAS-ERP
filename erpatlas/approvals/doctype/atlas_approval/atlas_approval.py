@@ -31,6 +31,10 @@ def _ensure_handlers():
 		from erpatlas.documents.export_handler import on_document_export
 
 		register_handler("Document export", on_document_export)
+	if "Change" not in HANDLERS:
+		from erpatlas.change_control.handler import on_change
+
+		register_handler("Change", on_change)
 
 
 class AtlasApproval(Document):

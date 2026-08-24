@@ -100,6 +100,13 @@ What was measured on site.
 **Quantity variance**:
 Drawing quantity versus site measure. Status is provisional, variance, or approved. Approve locks the numbers; it is not a Payment Entry.
 
+**Instalment**:
+A land-loan reminder on a Parcel. Marking it paid is ops only. ERPNext remains the books.
+_Avoid_: Payment Entry (for this reminder), Tally voucher
+
+**Books case**:
+A recon or exception against company accounts. Atlas never posts a voucher from it.
+
 ### Seats
 
 **Atlas Developer Admin**:
