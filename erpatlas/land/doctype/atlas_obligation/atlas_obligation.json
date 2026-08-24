@@ -15,7 +15,7 @@
     {"default": "open", "fieldname": "status", "fieldtype": "Select", "in_list_view": 1, "label": "Status", "options": "open\nfiled\noverdue", "reqd": 1},
     {"fieldname": "filed_ref", "fieldtype": "Data", "label": "Filing ref"}
   ],
-  "module": "Land Legal",
+  "module": "Land",
   "name": "Atlas Obligation",
   "naming_rule": "By \"Naming Series\" field",
   "owner": "Administrator",

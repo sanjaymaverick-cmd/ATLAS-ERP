@@ -95,7 +95,9 @@ One system: custom Frappe app `erpatlas` on ERPNext version-16. Full Atlas-3 fea
 
 ## Next implementation slice (unless the user names another)
 
-Payment (PE only after Approval), Purchase order submit-on-yes, Command GL cash/runway, Channel agent roster + exclusive lock are on main. Bench/Desk UAT is site work.
+Payment (PE only after Approval), Purchase order submit-on-yes, Command GL cash/runway, Channel agent roster + exclusive lock are on main.
+
+Desk UAT on the local ERPNext docker (`D:\ERPNext\frappe_docker`, site `frontend`, port 8000): bind-mount this repo as `apps/erpatlas` (see `compose.erpatlas.yaml` next to `pwd.yml`), `bench --site frontend install-app erpatlas`, `bench build --app erpatlas`. Module folders must match `modules.txt` (`Land`, `Analytics`). Run `bench --site frontend execute erpatlas.setup.uat.run`.
 
 Still do **not** implement CatBoost inside Atlas, WhatsApp send, Tally import/posts, or RERA 70/30 bank split unless the lock is explicitly reopened.
 

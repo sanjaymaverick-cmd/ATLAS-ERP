@@ -13,13 +13,13 @@ from erpatlas.property_inventory.lock import CHANNEL_ROLES
 @frappe.whitelist()
 def get_sales_analytics(company: str | None = None, project: str | None = None) -> dict:
 	roles = frappe.get_roles()
-	if set(roles) & CHANNEL_ROLES:
+	role_set = set(roles)
+	if "Administrator" not in role_set and role_set & CHANNEL_ROLES:
 		frappe.throw(_("Channel seats cannot open Sales Analytics."))
 	err = refuse_command_access(roles)
 	if err:
-		# Finance and Sales Manager may still see the funnel.
 		allowed = {"Atlas Developer Admin", "Atlas Project Director", "Atlas Sales Manager", "Atlas Finance"}
-		if not set(roles) & allowed:
+		if not role_set & allowed:
 			frappe.throw(_(err))
 	filters: dict = {}
 	if project:
