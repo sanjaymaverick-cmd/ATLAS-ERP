@@ -1,0 +1,25 @@
+{
+  "actions": [],
+  "autoname": "hash",
+  "creation": "2026-08-25 03:00:00",
+  "doctype": "DocType",
+  "engine": "InnoDB",
+  "field_order": ["at", "actor", "action", "entity", "ref"],
+  "fields": [
+    {"fieldname": "at", "fieldtype": "Datetime", "in_list_view": 1, "label": "At", "reqd": 1},
+    {"fieldname": "actor", "fieldtype": "Link", "in_list_view": 1, "label": "Actor", "options": "User", "reqd": 1},
+    {"fieldname": "action", "fieldtype": "Data", "in_list_view": 1, "label": "Action", "reqd": 1},
+    {"fieldname": "entity", "fieldtype": "Data", "in_list_view": 1, "label": "Entity", "reqd": 1},
+    {"fieldname": "ref", "fieldtype": "Data", "label": "Ref"}
+  ],
+  "module": "Audit",
+  "name": "Atlas Audit Event",
+  "naming_rule": "Random",
+  "owner": "Administrator",
+  "permissions": [
+    {"create": 1, "read": 1, "role": "Atlas Developer Admin"},
+    {"read": 1, "role": "Atlas Project Director"},
+    {"read": 1, "role": "Atlas Finance"}
+  ],
+  "read_only": 1
+}

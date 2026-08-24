@@ -78,15 +78,18 @@ One system: custom Frappe app `erpatlas` on ERPNext version-16. Full Atlas-3 fea
 - Land: statutory obligations (RERA filing dates, not 70/30 split)
 - Organization: owner decisions; assistant draft-only
 - Communications: WhatsApp template registry (no send)
+- Command P4: linear snapshot outlook + narrative brief (not CatBoost)
+- Capital: funding sanction split 70/30 loan/equity as percents summing to 100
+- Audit: append-only Atlas Audit Event
 - Research docs 01–06; docs/modules/command.md, booking.md
 
 ## Next implementation slice (unless the user names another)
 
 Prefer one of:
 
-1. Command P4 forecasts (read-only)
-2. Capital funding sanctions
-3. Audit event log (if not covered by track_changes)
+1. Command P5 board-pack PDF
+2. Parcel / diligence pack (Land still has obligations only)
+3. Quantity variance (Controls still receive/issue only)
 
 Do not implement CatBoost, WhatsApp, Tally import, or RERA 70/30 unless named.
 
