@@ -119,6 +119,8 @@ P0 does not require Booking. P1+ does.
 
 **P1:** Wired from Atlas Booking + payment steps + Payment Entry (`atlas_booking`) + Atlas Commission. Collections MTD, live/MTD booking value, plan vs actual, commission Accrued/Approved (not Paid). Hold→book % and channel vs in-house mix. Bank cash and runway are still not on this page (need GL; not a shadow ledger).
 
+**P2:** `command/risk.py` emits up to five cards (severity, driver, waiting-on, linked docs, `auto_action=False`). Thresholds on Atlas Settings: approval SLA days, hold without book, hold expiring-soon, collection lag %, channel concentration %. Domains covered with live data: approval stall, sales holds, channel mix, collection lag, snags / Occupancy Certificate, vendor not Active. Cash vs 30d payables and GST-template-post-OC are not invented (need GL / CA).
+
 ## Out of scope for Command code
 
 - Rebuilding Atlas Booking, Handover, or CatBoost inside this page

@@ -6,12 +6,8 @@ import frappe
 from frappe import _
 from frappe.utils import today
 
-from erpatlas.command.kpis import (
-	DEFAULT_APPROVAL_SLA_DAYS,
-	DEFAULT_HOLD_EXPIRING_DAYS,
-	build_command,
-	refuse_command_access,
-)
+from erpatlas.command.kpis import build_command, refuse_command_access
+from erpatlas.command.risk import DEFAULT_THRESHOLDS
 
 
 def projects_for_legal_entity(company: str | None) -> set[str] | None:
@@ -40,8 +36,17 @@ def get_command(company: str | None = None, project: str | None = None) -> dict:
 	company = company or None
 	project = project or None
 	project_names = resolve_project_names(company=company, project=project)
+	thresholds = command_thresholds()
 	if company and project_names is not None and not project_names:
-		empty = build_command(units=[], holds=[], approvals=[], today=today())
+		empty = build_command(
+			units=[],
+			holds=[],
+			approvals=[],
+			today=today(),
+			sla_days=int(thresholds["approval_sla_days"]),
+			hold_expiring_days=int(thresholds["hold_expiring_days"]),
+			thresholds=thresholds,
+		)
 		empty["filters"] = {"company": company, "project": project}
 		return empty
 
@@ -58,7 +63,7 @@ def get_command(company: str | None = None, project: str | None = None) -> dict:
 	holds = frappe.get_all(
 		"Atlas Unit Hold",
 		filters=hold_filters,
-		fields=["name", "status", "until", "project", "customer_name"],
+		fields=["name", "status", "until", "project", "customer_name", "creation"],
 	)
 	approvals = frappe.get_all(
 		"Atlas Approval",
@@ -78,21 +83,76 @@ def get_command(company: str | None = None, project: str | None = None) -> dict:
 		order_by="aging_days desc",
 	)
 	bookings, steps, payments, commissions = _booking_rows(project_names)
+	handovers, snags = _handover_rows(project_names)
+	vendors = _vendor_rows()
 	payload = build_command(
 		units=units,
 		holds=holds,
 		approvals=approvals,
 		today=today(),
 		project_names=None,
-		sla_days=DEFAULT_APPROVAL_SLA_DAYS,
-		hold_expiring_days=DEFAULT_HOLD_EXPIRING_DAYS,
+		sla_days=int(thresholds["approval_sla_days"]),
+		hold_expiring_days=int(thresholds["hold_expiring_days"]),
 		bookings=bookings,
 		steps=steps,
 		payments=payments,
 		commissions=commissions,
+		handovers=handovers,
+		snags=snags,
+		vendors=vendors,
+		thresholds=thresholds,
 	)
 	payload["filters"] = {"company": company, "project": project}
 	return payload
+
+
+def command_thresholds() -> dict:
+	out = dict(DEFAULT_THRESHOLDS)
+	if not frappe.db.exists("DocType", "Atlas Settings"):
+		return out
+	settings = frappe.get_single("Atlas Settings")
+	for field, default in DEFAULT_THRESHOLDS.items():
+		if not settings.meta.has_field(field):
+			continue
+		val = settings.get(field)
+		if val in (None, ""):
+			continue
+		out[field] = val
+	return out
+
+
+def _handover_rows(project_names: set[str] | None) -> tuple[list, list]:
+	if not frappe.db.exists("DocType", "Atlas Handover Case"):
+		return [], []
+	filters: dict = {}
+	if project_names is not None:
+		filters["project"] = ["in", list(project_names)]
+	handovers = frappe.get_all(
+		"Atlas Handover Case",
+		filters=filters,
+		fields=["name", "status", "occupancy_certificate", "snags_open", "project", "unit"],
+	)
+	snags = []
+	if frappe.db.exists("DocType", "Atlas Snag"):
+		sfilters: dict = {"status": "Open"}
+		if project_names is not None:
+			sfilters["project"] = ["in", list(project_names)]
+		snags = frappe.get_all(
+			"Atlas Snag",
+			filters=sfilters,
+			fields=["name", "status", "project", "unit", "handover"],
+		)
+	return handovers, snags
+
+
+def _vendor_rows() -> list:
+	if not frappe.get_meta("Supplier").has_field("atlas_stage"):
+		return []
+	return frappe.get_all(
+		"Supplier",
+		filters={"atlas_stage": ["!=", "Active"]},
+		fields=["name", "atlas_stage", "supplier_name"],
+	)
 
 
 def _booking_rows(project_names: set[str] | None) -> tuple[list, list, list, list]:

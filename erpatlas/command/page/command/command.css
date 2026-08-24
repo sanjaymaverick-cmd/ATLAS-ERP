@@ -37,6 +37,9 @@
 .atlas-command-card.is-stale {
 	border-color: var(--red-500, #e03636);
 }
+.atlas-command-card.is-warn {
+	border-color: var(--yellow-500, #c99212);
+}
 .atlas-command-card-kicker {
 	font-size: 11px;
 	letter-spacing: 0.08em;
