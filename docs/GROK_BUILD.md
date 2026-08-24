@@ -67,15 +67,15 @@ One system: custom Frappe app `erpatlas` on ERPNext version-16. Full Atlas-3 fea
 - Command P0 + P1: Desk page; unit/hold/approval KPIs; Booking/PE money (value, collections MTD, plan vs actual, commission liability)
 - Handover: Occupancy Certificate + snags + full collection → unit Sold / booking Possession
 - Channel: Atlas Daily Report gate on hold; Role fixtures
+- Commission books: optional accrual JE; Purchase Invoice after Approved; never PE from Approvals
 - Research docs 01–06; docs/modules/command.md, booking.md
 
 ## Next implementation slice (unless the user names another)
 
 Prefer one of:
 
-1. Commission books — accrual JE optional; Approved → Purchase Invoice + TDS (Tax Withholding); PE only from Finance (research/03)
-2. Commercial — Supplier atlas_stage + GSTIN; no PO until Active
-3. Command P2 — deterministic risk cards + Atlas Settings thresholds
+1. Commercial — Supplier atlas_stage + GSTIN; no PO until Active
+2. Command P2 — deterministic risk cards + Atlas Settings thresholds
 
 Do not implement CatBoost, WhatsApp, Tally import, or RERA 70/30 unless named.
 

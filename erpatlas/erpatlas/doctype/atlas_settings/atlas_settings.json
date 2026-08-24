@@ -3,7 +3,13 @@
   "creation": "2026-08-24 16:00:00",
   "doctype": "DocType",
   "engine": "InnoDB",
-  "field_order": ["md_bypass_four_eyes", "default_hold_days"],
+  "field_order": [
+    "md_bypass_four_eyes",
+    "default_hold_days",
+    "accrue_commission_on",
+    "commission_expense_account",
+    "commission_payable_account"
+  ],
   "fields": [
     {
       "default": "1",
@@ -17,6 +23,25 @@
       "fieldname": "default_hold_days",
       "fieldtype": "Int",
       "label": "Default hold days"
+    },
+    {
+      "default": "Booking",
+      "fieldname": "accrue_commission_on",
+      "fieldtype": "Select",
+      "label": "Accrue commission on",
+      "options": "Booking\nApproval"
+    },
+    {
+      "fieldname": "commission_expense_account",
+      "fieldtype": "Link",
+      "label": "Commission expense account",
+      "options": "Account"
+    },
+    {
+      "fieldname": "commission_payable_account",
+      "fieldtype": "Link",
+      "label": "Commission payable account",
+      "options": "Account"
     }
   ],
   "issingle": 1,

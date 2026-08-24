@@ -49,6 +49,16 @@ CUSTOM_FIELDS = {
 			"read_only": 1,
 		},
 	],
+	"Purchase Invoice": [
+		{
+			"fieldname": "atlas_commission",
+			"label": "Atlas Commission",
+			"fieldtype": "Link",
+			"options": "Atlas Commission",
+			"insert_after": "supplier",
+			"read_only": 1,
+		},
+	],
 	"Project": [
 		{
 			"fieldname": "gst_on_under_construction",

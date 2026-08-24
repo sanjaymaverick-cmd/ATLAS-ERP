@@ -185,6 +185,9 @@ def activate_booking(booking_name: str) -> dict:
 			comm.insert(ignore_permissions=True)
 		finally:
 			frappe.flags.in_atlas_commission = False
+		from erpatlas.books.commission_adapter import post_accrual_journal
+
+		post_accrual_journal(comm)
 		booking.commission = comm.name
 	booking.status = ACTIVE
 	booking.live_unit = booking_live_unit(

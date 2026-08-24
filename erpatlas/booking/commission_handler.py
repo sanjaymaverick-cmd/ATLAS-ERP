@@ -24,4 +24,8 @@ def on_commission(approval: dict, decision: str) -> str | None:
 		doc.save(ignore_permissions=True)
 	finally:
 		frappe.flags.in_atlas_commission = False
+	if decision == APPROVED:
+		from erpatlas.books.commission_adapter import post_accrual_journal
+
+		post_accrual_journal(doc)
 	return None
