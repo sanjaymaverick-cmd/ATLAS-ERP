@@ -78,6 +78,32 @@ atlas.CommandBoard = class CommandBoard {
 		const kpi = (label, value, tone) =>
 			`<div class="atlas-command-kpi ${tone || ""}"><span class="atlas-command-kpi-label">${label}</span><span class="atlas-command-kpi-value">${value}</span></div>`;
 		const inr = (value) => frappe.format(value || 0, { fieldtype: "Currency" });
+		const risks = data.risk || [];
+		const risk_html = `<section class="atlas-command-exceptions">
+					<h3>${__("Risk")}</h3>
+					<p class="text-muted">${__("Deterministic thresholds from Atlas Settings. Cards advise only — they do not approve, pay, or change a unit.")}</p>
+					<div class="atlas-command-card-list">${
+						risks.length
+							? risks
+									.map((row) => {
+										const route = (row.doctype || "").toLowerCase().replace(/ /g, "-");
+										const href =
+											row.doctype && row.refs && row.refs[0]
+												? `/app/${route}/${encodeURIComponent(row.refs[0])}`
+												: "#";
+										const waiter = row.waiting_on
+											? ` · ${__("Waiting on")} ${frappe.utils.escape_html(row.waiting_on)}`
+											: "";
+										return `<a class="atlas-command-card ${row.severity === "red" ? "is-stale" : "is-warn"}" href="${href}">
+							<span class="atlas-command-card-kicker">${frappe.utils.escape_html(row.domain || "")} · ${frappe.utils.escape_html(row.severity || "")}${waiter}</span>
+							<span class="atlas-command-card-title">${frappe.utils.escape_html(row.title || "")}</span>
+							<span class="atlas-command-card-meta">${frappe.utils.escape_html(row.driver || "")}</span>
+						</a>`;
+									})
+									.join("")
+							: `<p class="text-muted">${__("No risk cards in this filter.")}</p>`
+					}</div>
+				</section>`;
 		const money = data.money || {};
 		const money_html = data.shows_money
 			? `<section class="atlas-command-strip">
@@ -106,6 +132,7 @@ atlas.CommandBoard = class CommandBoard {
 					<p class="text-muted">${__("Pending Approvals, oldest first. Past {0} days is stale.", [sla])}</p>
 					<div class="atlas-command-card-list">${exception_html}</div>
 				</section>
+				${risk_html}
 				${money_html}
 				<section class="atlas-command-strip">
 					<h3>${__("Inventory and holds")}</h3>

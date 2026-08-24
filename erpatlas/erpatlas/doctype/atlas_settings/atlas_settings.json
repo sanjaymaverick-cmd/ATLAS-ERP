@@ -8,7 +8,12 @@
     "default_hold_days",
     "accrue_commission_on",
     "commission_expense_account",
-    "commission_payable_account"
+    "commission_payable_account",
+    "approval_sla_days",
+    "hold_expiring_days",
+    "hold_without_book_days",
+    "collection_lag_percent",
+    "channel_concentration_percent"
   ],
   "fields": [
     {
@@ -42,6 +47,36 @@
       "fieldtype": "Link",
       "label": "Commission payable account",
       "options": "Account"
+    },
+    {
+      "default": "3",
+      "fieldname": "approval_sla_days",
+      "fieldtype": "Int",
+      "label": "Approval SLA days"
+    },
+    {
+      "default": "2",
+      "fieldname": "hold_expiring_days",
+      "fieldtype": "Int",
+      "label": "Hold expiring-soon days"
+    },
+    {
+      "default": "7",
+      "fieldname": "hold_without_book_days",
+      "fieldtype": "Int",
+      "label": "Held without booking days"
+    },
+    {
+      "default": "20",
+      "fieldname": "collection_lag_percent",
+      "fieldtype": "Percent",
+      "label": "Collection lag percent"
+    },
+    {
+      "default": "70",
+      "fieldname": "channel_concentration_percent",
+      "fieldtype": "Percent",
+      "label": "Channel concentration percent"
     }
   ],
   "issingle": 1,

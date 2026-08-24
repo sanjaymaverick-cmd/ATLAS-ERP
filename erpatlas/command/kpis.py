@@ -210,6 +210,10 @@ def build_command(
 	steps: Iterable[Mapping] = (),
 	payments: Iterable[Mapping] = (),
 	commissions: Iterable[Mapping] = (),
+	handovers: Iterable[Mapping] = (),
+	snags: Iterable[Mapping] = (),
+	vendors: Iterable[Mapping] = (),
+	thresholds: Mapping | None = None,
 ) -> dict:
 	"""Exception-first payload. Booking money is P1. Bank cash/runway is not."""
 	units_f = filter_by_projects(units, project_names)
@@ -230,6 +234,20 @@ def build_command(
 		holds=holds_f,
 		today=today,
 	)
+	from erpatlas.command.risk import DEFAULT_THRESHOLDS, risk_cards
+
+	th = {**DEFAULT_THRESHOLDS, **(thresholds or {})}
+	risk = risk_cards(
+		holds=holds_f,
+		approvals=approvals_f,
+		bookings=bookings_f,
+		money_board=money_board,
+		handovers=filter_by_projects(handovers, project_names),
+		snags=filter_by_projects(snags, project_names),
+		vendors=vendors,
+		today=today,
+		thresholds=th,
+	)
 	return {
 		"units": count_units_by_status(units_f),
 		"holds": {
@@ -245,6 +263,8 @@ def build_command(
 		},
 		"exceptions": exception_queue(aging["pending_rows"]),
 		"money": money_board,
+		"risk": risk,
+		"thresholds": th,
 		"shows_money": True,
 		"shows_cash": False,
 	}
