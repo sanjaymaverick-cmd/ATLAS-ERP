@@ -117,7 +117,7 @@ Start with **deterministic thresholds** in Atlas Settings. ML scores may layer l
 
 P0 does not require Booking. P1+ does.
 
-**P1:** Atlas Booking is on `main` (PR #3). Next Command slice can wire collections MTD, booking value, and plan vs actual. Do not invent a second booking model.
+**P1:** Wired from Atlas Booking + payment steps + Payment Entry (`atlas_booking`) + Atlas Commission. Collections MTD, live/MTD booking value, plan vs actual, commission Accrued/Approved (not Paid). Hold→book % and channel vs in-house mix. Bank cash and runway are still not on this page (need GL; not a shadow ledger).
 
 ## Out of scope for Command code
 

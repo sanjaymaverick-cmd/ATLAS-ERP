@@ -78,5 +78,5 @@ KPI Snapshot DocType, heat map, forecasts, board PDF — only after P0–P2 soli
 - Commit messages: what + why
 - PR against main describing P0 scope and screenshots/notes if Desk not available in CI
 
-P0 is scaffolded. Atlas Booking is on `main`. When the user says go, implement **Command P1** (money/sales KPIs from Booking / SO / PE). Do not invent Booking.
+P0 and P1 are on `main`. When the user says go, implement **Command P2** (deterministic risk cards + Atlas Settings thresholds). Do not invent Booking.
 ```
