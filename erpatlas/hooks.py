@@ -11,6 +11,20 @@ after_install = "erpatlas.setup.install.after_install"
 
 export_python_type_annotations = True
 
+# Desk (Frappe v16)
+add_to_apps_screen = [
+	{
+		"name": "erpatlas",
+		"logo": "/assets/erpatlas/logo.png",
+		"title": "ERPATLAS",
+		"route": "/app/erpatlas",
+	}
+]
+
+# Mixins on native DocTypes — v16+. Do not use override_doctype_class.
+extend_doctype_class = {}
+
+
 scheduler_events = {
 	"daily": [
 		"erpatlas.property_inventory.lock_adapter.expire_due_holds",
