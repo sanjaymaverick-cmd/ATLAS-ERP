@@ -2,13 +2,30 @@
 
 Real-estate ERP as a **native custom Frappe app** on ERPNext **v16**. One system — no separate frontend. Atlas-3 is the product source; ERPNext Accounts is the books of record.
 
-## Status
+## Status (main @ 2026-08-24)
 
-Locked: module map, roles, invariants (`docs/locked-structure.md`). Target stack: Frappe + ERPNext `version-16` (Python 3.14). See `docs/adr/0008-erpnext-v16.md`.
+Locked: module map, roles, invariants (`docs/locked-structure.md`). Stack: Frappe + ERPNext `version-16` (Python 3.14) — `docs/adr/0008-erpnext-v16.md`.
 
-This cut: **Property Inventory** (Unit lock, Hold, Tower) and **Approvals** (unified queue). Channel Company exists only so inventory isolation has a row to bind.
+**Scaffolded on main**
 
-Research (Booking ↔ SO, GST, commission/TDS, CAS, isolation fixtures): `docs/research/`.
+| Area | What’s in the tree |
+|---|---|
+| Property Inventory | Atlas Unit / Tower / Hold / Channel Company; CAS lock |
+| Approvals | Unified `Atlas Approval` queue |
+| Booking | Atlas Booking + payment steps + Commission Accrued; Active → SO; collect (GST math) |
+| Books helpers | `payment_gst.py`, SO mixin, posting stubs |
+| Command (CEO) | Desk page + Workspace; P0 KPIs (units, holds, approvals aging) |
+| Research | `docs/research/01`–`06` (v16, Booking↔SO, commission/TDS, CAS, isolation, GST) |
+
+**Next (pick one branch at a time)**
+
+1. Handover & Possession (OC + snags + full collection → Unit Sold)
+2. Commission JE / TDS Purchase Invoice (research/03) — still no PE from Approvals
+3. Channel role fixtures + daily-report gate (research/05)
+4. Command P1 money KPIs (booking value, collections from PE)
+5. Command P2 deterministic risk cards
+
+Not next unless named: CatBoost, WhatsApp, Tally XML, RERA 70/30, full AI forecasts.
 
 ## Install (bench)
 
@@ -18,15 +35,20 @@ bench get-app erpatlas "D:\work Dir\Atlas-ERP"
 bench --site SITE install-app erpatlas
 ```
 
-Requires `erpnext` on version-16.
+Requires `erpnext` on version-16. Windows: WSL2.
 
-## Tests that do not need a site
+## Tests (no site required)
 
 ```bat
 cd "D:\work Dir\Atlas-ERP"
 python -m pytest tests -q
 ```
 
+## Grok Build / CLI
+
+- Base brief: `docs/GROK_BUILD.md`
+- CEO Command: `docs/GROK_BUILD_COMMAND.md`
+
 ## Language
 
-`CONTEXT.md`. Three different “companies”: Legal Entity (ERPNext Company), Channel Company (agency), and the books company — see `docs/adr/0005-three-company-words.md`.
+`CONTEXT.md`. Legal Entity = ERPNext Company; Channel Company = agency (not a Company). Unit is the lock. Booking ≠ Sales Order ≠ Payment Entry.
