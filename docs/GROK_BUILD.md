@@ -68,14 +68,17 @@ One system: custom Frappe app `erpatlas` on ERPNext version-16. Full Atlas-3 fea
 - Handover: Occupancy Certificate + snags + full collection → unit Sold / booking Possession
 - Channel: Atlas Daily Report gate on hold; Role fixtures
 - Commission books: optional accrual JE; Purchase Invoice after Approved; never PE from Approvals
+- Commercial: Supplier atlas_stage; GSTIN required; no PO until Active
 - Research docs 01–06; docs/modules/command.md, booking.md
 
 ## Next implementation slice (unless the user names another)
 
 Prefer one of:
 
-1. Commercial — Supplier atlas_stage + GSTIN; no PO until Active
-2. Command P2 — deterministic risk cards + Atlas Settings thresholds
+1. Command P2 — deterministic risk cards + Atlas Settings thresholds
+2. Lead & Pipeline (CatBoost stays external)
+3. Documents four-eyes export
+4. Site diary / inspections
 
 Do not implement CatBoost, WhatsApp, Tally import, or RERA 70/30 unless named.
 

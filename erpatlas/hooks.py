@@ -42,6 +42,7 @@ add_to_apps_screen = [
 # Mixins on native DocTypes — v16+. Do not use override_doctype_class.
 extend_doctype_class = {
 	"Sales Order": "erpatlas.books.sales_order.AtlasSalesOrderMixin",
+	"Supplier": "erpatlas.commercial.supplier.AtlasSupplierMixin",
 }
 
 
