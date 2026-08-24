@@ -64,7 +64,7 @@ One system: custom Frappe app `erpatlas` on ERPNext version-16. Full Atlas-3 fea
 - Approvals: unified Atlas Approval queue
 - Booking: Atlas Booking + payment steps + Commission Accrued; Active → SO; collect via payment_gst
 - books: payment_gst, posting stubs, Sales Order mixin
-- Command P0–P2: Desk page; Booking/PE money; deterministic risk cards from Atlas Settings thresholds
+- Command P0–P3: Desk page; risk cards; daily KPI snapshot + portfolio heat map
 - Handover: Occupancy Certificate + snags + full collection → unit Sold / booking Possession
 - Channel: Atlas Daily Report gate on hold; Role fixtures
 - Commission books: optional accrual JE; Purchase Invoice after Approved; never PE from Approvals
@@ -78,9 +78,9 @@ One system: custom Frappe app `erpatlas` on ERPNext version-16. Full Atlas-3 fea
 
 Prefer one of:
 
-1. Command P3 — daily KPI snapshot / portfolio heat map
-2. Quotations / RFQ → PO
-3. Controls (materials)
+1. Quotations / RFQ → PO
+2. Controls (materials)
+3. Change Control RFI / VO (NCR already from inspection)
 
 Do not implement CatBoost, WhatsApp, Tally import, or RERA 70/30 unless named.
 

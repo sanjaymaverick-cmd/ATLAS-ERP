@@ -50,6 +50,7 @@ extend_doctype_class = {
 scheduler_events = {
 	"daily": [
 		"erpatlas.property_inventory.lock_adapter.expire_due_holds",
+		"erpatlas.command.snapshot.capture_snapshot",
 	]
 }
 

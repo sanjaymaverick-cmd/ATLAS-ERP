@@ -103,6 +103,11 @@ def get_command(company: str | None = None, project: str | None = None) -> dict:
 		thresholds=thresholds,
 	)
 	payload["filters"] = {"company": company, "project": project}
+	from erpatlas.command.snapshot import _portfolio_facts, sparkline_booking_value
+	from erpatlas.command.portfolio import sparkline
+
+	payload["portfolio"] = _portfolio_facts()
+	payload["sparkline"] = sparkline(sparkline_booking_value())
 	return payload
 
 
