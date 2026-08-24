@@ -43,6 +43,7 @@ add_to_apps_screen = [
 extend_doctype_class = {
 	"Sales Order": "erpatlas.books.sales_order.AtlasSalesOrderMixin",
 	"Supplier": "erpatlas.commercial.supplier.AtlasSupplierMixin",
+	"Lead": "erpatlas.pipeline.lead.AtlasLeadMixin",
 }
 
 
@@ -71,6 +72,7 @@ permission_query_conditions = {
 	"Atlas Handover Case": "erpatlas.handover.permissions.handover_query",
 	"Atlas Snag": "erpatlas.handover.permissions.snag_query",
 	"Atlas Daily Report": "erpatlas.channel.permissions.daily_report_query",
+	"Lead": "erpatlas.pipeline.permissions.lead_query",
 }
 
 has_permission = {
@@ -82,4 +84,5 @@ has_permission = {
 	"Atlas Handover Case": "erpatlas.handover.permissions.has_handover_permission",
 	"Atlas Snag": "erpatlas.handover.permissions.has_snag_permission",
 	"Atlas Daily Report": "erpatlas.channel.permissions.has_daily_report_permission",
+	"Lead": "erpatlas.pipeline.permissions.has_lead_permission",
 }
