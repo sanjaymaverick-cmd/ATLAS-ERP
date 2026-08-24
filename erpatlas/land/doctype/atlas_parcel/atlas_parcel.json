@@ -97,7 +97,7 @@
     {"link_doctype": "Atlas Instalment", "link_fieldname": "parcel"}
   ],
   "modified": "2026-08-25 04:00:00",
-  "module": "Land Legal",
+  "module": "Land",
   "name": "Atlas Parcel",
   "naming_rule": "By \"Naming Series\" field",
   "owner": "Administrator",

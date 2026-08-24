@@ -19,6 +19,7 @@ def test_only_md_and_project_director_open_command():
 	assert "Channel" in refuse_command_access(["Atlas Channel Admin", "Atlas Developer Admin"])
 	assert "Command is for" in refuse_command_access(["Atlas Finance"])
 	assert "Command is for" in refuse_command_access(["Atlas Sales Manager"])
+	assert refuse_command_access(["Administrator", "Atlas Channel Agent", "Atlas Developer Admin"]) is None
 	assert COMMAND_ROLES == {"Atlas Developer Admin", "Atlas Project Director"}
 
 

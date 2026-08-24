@@ -58,6 +58,9 @@ def cash_kpis(*, bank=None, cash=None, avg_monthly_outflow=None) -> dict | None:
 
 def refuse_command_access(roles: Iterable[str]) -> str | None:
 	role_set = set(roles)
+	# Frappe grants the Administrator user every Role. That is not a Channel seat.
+	if "Administrator" in role_set:
+		return None
 	if role_set & CHANNEL_ROLES:
 		return "Channel seats cannot open Command."
 	if not role_set & COMMAND_ROLES:

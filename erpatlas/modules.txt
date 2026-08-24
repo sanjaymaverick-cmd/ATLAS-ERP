@@ -10,11 +10,11 @@ Site
 Change Control
 Quotations
 Controls
-Land Legal
+Land
 Organization
 Communications
 Capital
 Audit
 Command
-Sales Analytics
+Analytics
 Books

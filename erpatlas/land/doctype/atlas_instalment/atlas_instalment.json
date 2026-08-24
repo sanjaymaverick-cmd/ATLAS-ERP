@@ -14,7 +14,7 @@
     {"fieldname": "amount", "fieldtype": "Currency", "in_list_view": 1, "label": "Amount", "reqd": 1},
     {"default": "due", "fieldname": "status", "fieldtype": "Select", "in_list_view": 1, "label": "Status", "options": "due\npaid", "reqd": 1}
   ],
-  "module": "Land Legal",
+  "module": "Land",
   "name": "Atlas Instalment",
   "naming_rule": "By \"Naming Series\" field",
   "owner": "Administrator",

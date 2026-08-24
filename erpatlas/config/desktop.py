@@ -59,7 +59,7 @@ def get_data():
 			"label": _("Materials"),
 		},
 		{
-			"module_name": "Land Legal",
+			"module_name": "Land",
 			"type": "module",
 			"label": _("Land and filings"),
 		},
@@ -89,7 +89,7 @@ def get_data():
 			"label": _("Command"),
 		},
 		{
-			"module_name": "Sales Analytics",
+			"module_name": "Analytics",
 			"type": "module",
 			"label": _("Sales funnel"),
 		},
