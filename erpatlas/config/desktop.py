@@ -19,6 +19,11 @@ def get_data():
 			"label": _("Bookings"),
 		},
 		{
+			"module_name": "Handover",
+			"type": "module",
+			"label": _("Keys and snags"),
+		},
+		{
 			"module_name": "Command",
 			"type": "module",
 			"label": _("Command"),

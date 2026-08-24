@@ -195,7 +195,15 @@ def activate_booking(booking_name: str) -> dict:
 		booking.save(ignore_permissions=True)
 	finally:
 		frappe.flags.in_atlas_booking = False
-	return {"booking": booking.name, "sales_order": so, "commission": booking.commission}
+	from erpatlas.handover.adapter import ensure_handover
+
+	handover = ensure_handover(booking)
+	return {
+		"booking": booking.name,
+		"sales_order": so,
+		"commission": booking.commission,
+		"handover": handover,
+	}
 
 
 def company_for_project(project: str) -> str:

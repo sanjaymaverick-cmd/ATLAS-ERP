@@ -22,7 +22,7 @@
 | Channel isolation | Query conditions; Channel may read units they held or booked |
 | Cancel before possession | SO cancel if no money; unit → Available. Possession cannot cancel |
 
-Not in this slice: Handover / Possession gates, CatBoost, WhatsApp, Tally, RERA 70/30, commission JE / TDS PI.
+Handover / Possession is a separate module. Not here: CatBoost, WhatsApp, Tally, RERA 70/30, commission JE / TDS PI.
 
 ## DocTypes
 

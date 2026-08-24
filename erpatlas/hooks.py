@@ -49,6 +49,8 @@ permission_query_conditions = {
 	"Atlas Approval": "erpatlas.approvals.permissions.approval_query",
 	"Atlas Booking": "erpatlas.booking.permissions.booking_query",
 	"Atlas Commission": "erpatlas.booking.permissions.commission_query",
+	"Atlas Handover Case": "erpatlas.handover.permissions.handover_query",
+	"Atlas Snag": "erpatlas.handover.permissions.snag_query",
 }
 
 has_permission = {
@@ -57,4 +59,6 @@ has_permission = {
 	"Atlas Channel Company": "erpatlas.property_inventory.permissions.has_channel_company_permission",
 	"Atlas Booking": "erpatlas.booking.permissions.has_booking_permission",
 	"Atlas Commission": "erpatlas.booking.permissions.has_commission_permission",
+	"Atlas Handover Case": "erpatlas.handover.permissions.has_handover_permission",
+	"Atlas Snag": "erpatlas.handover.permissions.has_snag_permission",
 }
