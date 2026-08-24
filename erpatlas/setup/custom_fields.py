@@ -49,6 +49,16 @@ CUSTOM_FIELDS = {
 			"read_only": 1,
 		},
 	],
+	"Supplier": [
+		{
+			"fieldname": "atlas_stage",
+			"label": "Atlas stage",
+			"fieldtype": "Select",
+			"options": "Draft\nApproval\nActive",
+			"default": "Draft",
+			"insert_after": "supplier_name",
+		},
+	],
 	"Purchase Invoice": [
 		{
 			"fieldname": "atlas_commission",

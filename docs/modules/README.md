@@ -11,7 +11,8 @@ Implementable DocType designs. High-level map is locked in `docs/locked-structur
 | Booking | [booking.md](booking.md) | Scaffolded — Active → SO, collect, commission Accrued |
 | Handover | [handover.md](handover.md) | Occupancy Certificate + snags + full collection → Sold |
 | Commission (books) | [research/03](../research/03-commission-tds.md) | Accrual JE (if accounts set); PI after Approved; TDS via ERPNext Tax Withholding. No PE from Approvals |
-| Documents / Commercial / Site / … | — | not started |
+| Commercial | Vendor Active + GSTIN before PO | Scaffolded. RFQ/PO flow not started |
+| Documents / Site / … | — | not started |
 
 Platform: ERPNext **v16** — [ADR 0008](../adr/0008-erpnext-v16.md), [research/01](../research/01-erpnext-v16.md).
 

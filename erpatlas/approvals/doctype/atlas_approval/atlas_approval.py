@@ -23,6 +23,10 @@ def _ensure_handlers():
 		from erpatlas.booking.commission_handler import on_commission
 
 		register_handler("Commission", on_commission)
+	if "Vendor" not in HANDLERS:
+		from erpatlas.commercial.vendor_handler import on_vendor
+
+		register_handler("Vendor", on_vendor)
 
 
 class AtlasApproval(Document):
