@@ -35,6 +35,19 @@ _Avoid_: reservation, lock (unqualified), blocked
 A confirmed sale of one Unit to one Customer. Commission may accrue here. It is not a Payment Entry.
 _Avoid_: Sales Order (the later books document), allotment (a booking paper)
 
+### Land
+
+**Parcel**:
+A plot of land for a Project. Status is identified → diligence → acquired.
+_Avoid_: site (the physical place of work), Unit (a sellable flat)
+
+**Khasra**:
+The revenue survey number of a Parcel.
+
+**Diligence**:
+Title, conversion, road and other checks before you buy the land. Each item is open, clear, or flagged. Acquisition waits until every item is clear.
+_Avoid_: due diligence as a free-text note on the Project
+
 ### Approvals
 
 **Approval**:

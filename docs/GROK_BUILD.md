@@ -75,7 +75,7 @@ One system: custom Frappe app `erpatlas` on ERPNext version-16. Full Atlas-3 fea
 - Command P3: KPI snapshot + portfolio heat map
 - Quotations: lowest Active-vendor quote may become a PO
 - Controls: materials receive/issue
-- Land: statutory obligations (RERA filing dates, not 70/30 split)
+- Land: parcels + standard title pack; acquire blocked until diligence is clear; obligations (not 70/30 split)
 - Organization: owner decisions; assistant draft-only
 - Communications: WhatsApp template registry (no send)
 - Command P4: linear snapshot outlook + narrative brief (not CatBoost)
@@ -88,8 +88,7 @@ One system: custom Frappe app `erpatlas` on ERPNext version-16. Full Atlas-3 fea
 
 Prefer one of:
 
-1. Parcel / diligence pack (Land still has obligations only)
-2. Quantity variance (Controls still receive/issue only)
+1. Quantity variance (Controls still receive/issue only)
 
 Do not implement CatBoost, WhatsApp, Tally import, or RERA 70/30 unless named.
 

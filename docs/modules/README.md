@@ -20,7 +20,7 @@ Implementable DocType designs. High-level map is locked in `docs/locked-structur
 | Site | [site.md](site.md) | Diary one-seal-per-device-day; inspection fail raises NCR |
 | Change Control | Atlas Change Item | NCR from inspection; close NCR; VO amount → Approval kind Change |
 | Controls | Atlas Material | Cannot issue more than received |
-| Land & Legal | Atlas Obligation | RERA/labour/insurance/tax filings. Not 70/30 bank split |
+| Land & Legal | [land.md](land.md) | Parcel + title pack; acquire only when diligence is clear. Obligations still not 70/30 |
 | Organization | Owner Decision, Assistant Note | Assistant draft-only |
 | Communications | Atlas Wa Template | Registry only — no send |
 
