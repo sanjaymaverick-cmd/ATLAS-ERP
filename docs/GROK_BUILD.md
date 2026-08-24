@@ -69,16 +69,17 @@ One system: custom Frappe app `erpatlas` on ERPNext version-16. Full Atlas-3 fea
 - Channel: Atlas Daily Report gate on hold; Role fixtures
 - Commission books: optional accrual JE; Purchase Invoice after Approved; never PE from Approvals
 - Commercial: Supplier atlas_stage; GSTIN required; no PO until Active
+- Pipeline: native Lead ingest/dedup; CatBoost payload external only
 - Research docs 01–06; docs/modules/command.md, booking.md
 
 ## Next implementation slice (unless the user names another)
 
 Prefer one of:
 
-1. Lead & Pipeline (CatBoost stays external)
-2. Documents four-eyes export
-3. Site diary / inspections
-4. Command P3 — daily KPI snapshot / portfolio heat map
+1. Documents four-eyes export
+2. Site diary / inspections
+3. Command P3 — daily KPI snapshot / portfolio heat map
+4. Quotations / RFQ → PO
 
 Do not implement CatBoost, WhatsApp, Tally import, or RERA 70/30 unless named.
 

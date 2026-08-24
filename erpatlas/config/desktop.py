@@ -29,6 +29,11 @@ def get_data():
 			"label": _("Channel companies"),
 		},
 		{
+			"module_name": "Pipeline",
+			"type": "module",
+			"label": _("Leads"),
+		},
+		{
 			"module_name": "Command",
 			"type": "module",
 			"label": _("Command"),
