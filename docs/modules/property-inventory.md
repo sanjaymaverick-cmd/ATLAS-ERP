@@ -131,7 +131,7 @@ Channel `book` while waiting: Hold stays **Held**, `booking_requested=1`, Approv
 3. `bookHold(hold, value)`:
    - Hold must be Held.
    - If the agent has a Channel Company: raise Approval, do not book.
-   - Else: Booking module (later) + Hold → Booked + Unit Held → Booked.
+   - Else: Booking module `activate_from_hold` (CAS unit → Booked, close Hold, submit Sales Order, accrue Commission).
 4. Channel query: Units where `status=Available` OR a Held hold exists for the user’s Channel Company. Holds: own company only.
 5. In-house sees all units of Projects they may read.
 
@@ -144,4 +144,4 @@ Channel `book` while waiting: Hold stays **Held**, `booking_requested=1`, Approv
 
 ## Out of this slice
 
-Daily report DocType, Booking DocType, Handover, Sales Order posting, rate cards, parking, facing. The lock interface accepts those as callers.
+Daily report DocType, Handover, rate cards, parking, facing. Booking / Sales Order posting is the Booking module.

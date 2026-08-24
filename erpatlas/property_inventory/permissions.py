@@ -3,6 +3,35 @@ from __future__ import annotations
 CHANNEL_ROLES = frozenset({"Atlas Channel Agent", "Atlas Channel Admin"})
 
 
+def unit_query_clause(company_sql: str | None) -> str:
+	"""SQL fragment. `company_sql` is already escaped (quotes included), or None."""
+	available = "`tabAtlas Unit`.status = 'Available'"
+	if not company_sql:
+		return f"({available})"
+	return f"""({available} or exists (
+		select 1 from `tabAtlas Unit Hold` h
+		where h.unit = `tabAtlas Unit`.name
+			and h.channel_company = {company_sql}
+	) or exists (
+		select 1 from `tabAtlas Booking` b
+		where b.unit = `tabAtlas Unit`.name
+			and b.channel_company = {company_sql}
+			and b.status in ('Active', 'Possession')
+	))"""
+
+
+def booking_query_clause(company_sql: str | None) -> str:
+	if not company_sql:
+		return "1=0"
+	return f"`tabAtlas Booking`.channel_company = {company_sql}"
+
+
+def commission_query_clause(company_sql: str | None) -> str:
+	if not company_sql:
+		return "1=0"
+	return f"`tabAtlas Commission`.channel_company = {company_sql}"
+
+
 def _roles(user):
 	import frappe
 
@@ -35,16 +64,9 @@ def unit_query(user):
 	if not is_channel(user):
 		return ""
 	company = channel_company_for(user)
-	available = "`tabAtlas Unit`.status = 'Available'"
 	if not company:
-		return f"({available})"
-	esc = frappe.db.escape(company)
-	return f"""({available} or exists (
-		select 1 from `tabAtlas Unit Hold` h
-		where h.unit = `tabAtlas Unit`.name
-			and h.status = 'Held'
-			and h.channel_company = {esc}
-	))"""
+		return unit_query_clause(None)
+	return unit_query_clause(frappe.db.escape(company))
 
 
 def hold_query(user):
@@ -81,19 +103,21 @@ def has_unit_permission(doc, user=None, permission_type="read"):
 	user = user or frappe.session.user
 	if not is_channel(user):
 		return True
-	if doc.status == "Available":
-		return True
-	if doc.status == "Held":
-		company = channel_company_for(user)
-		if not company:
-			return False
-		return bool(
-			frappe.db.exists(
-				"Atlas Unit Hold",
-				{"unit": doc.name, "status": "Held", "channel_company": company},
-			)
+	from erpatlas.booking.plan import channel_may_read_unit
+
+	company = channel_company_for(user)
+	if not company:
+		return channel_may_read_unit(status=doc.status, own_hold=False, own_booking=False)
+	own_hold = bool(
+		frappe.db.exists("Atlas Unit Hold", {"unit": doc.name, "channel_company": company})
+	)
+	own_booking = bool(
+		frappe.db.exists(
+			"Atlas Booking",
+			{"unit": doc.name, "channel_company": company, "status": ["in", ["Active", "Possession"]]},
 		)
-	return False
+	)
+	return channel_may_read_unit(status=doc.status, own_hold=own_hold, own_booking=own_booking)
 
 
 def has_hold_permission(doc, user=None, permission_type="read"):

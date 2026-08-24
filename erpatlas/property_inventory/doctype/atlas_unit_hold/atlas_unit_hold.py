@@ -93,11 +93,14 @@ def release_hold(hold: str):
 
 
 @frappe.whitelist()
-def request_booking(hold: str, value: float):
+def request_booking(hold: str, value: float, steps=None):
 	doc = frappe.get_doc("Atlas Unit Hold", hold)
 	if doc.status != HOLD_HELD:
 		frappe.throw(_("Hold not active."))
 	unit = frappe.get_doc("Atlas Unit", doc.unit)
+	parsed = None
+	if steps:
+		parsed = frappe.parse_json(steps) if isinstance(steps, str) else steps
 	if channel_needs_booking_approval(doc.channel_company):
 		from erpatlas.approvals.intake import raise_approval
 
@@ -117,10 +120,6 @@ def request_booking(hold: str, value: float):
 		doc.booking_value = value
 		doc.save()
 		return {"approval": name, "status": doc.status}
-	err = try_set_status(doc.unit, HELD, "Booked", f"Hold {doc.name} booked")
-	if err:
-		frappe.throw(_(err))
-	doc.status = "Booked"
-	doc.live_unit = live_unit_key(status="Booked", unit=doc.unit, hold_name=doc.name)
-	doc.save()
-	return {"status": doc.status}
+	from erpatlas.booking.activate import activate_from_hold
+
+	return activate_from_hold(hold, consideration=value, steps=parsed)

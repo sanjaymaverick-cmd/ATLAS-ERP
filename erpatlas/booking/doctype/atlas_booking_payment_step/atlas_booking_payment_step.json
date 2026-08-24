@@ -1,0 +1,122 @@
+{
+  "actions": [],
+  "creation": "2026-08-24 18:00:00",
+  "doctype": "DocType",
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "label",
+    "kind",
+    "percent",
+    "due_date",
+    "taxable",
+    "gst",
+    "cgst",
+    "sgst",
+    "igst",
+    "gross",
+    "collected",
+    "sales_invoice",
+    "payment_entry"
+  ],
+  "fields": [
+    {
+      "fieldname": "label",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "Label",
+      "reqd": 1
+    },
+    {
+      "default": "slab",
+      "fieldname": "kind",
+      "fieldtype": "Select",
+      "in_list_view": 1,
+      "label": "Kind",
+      "options": "booking\nslab\npossession",
+      "reqd": 1
+    },
+    {
+      "fieldname": "percent",
+      "fieldtype": "Percent",
+      "in_list_view": 1,
+      "label": "Percent",
+      "reqd": 1
+    },
+    {
+      "fieldname": "due_date",
+      "fieldtype": "Date",
+      "in_list_view": 1,
+      "label": "Due"
+    },
+    {
+      "fieldname": "taxable",
+      "fieldtype": "Currency",
+      "label": "Taxable",
+      "read_only": 1
+    },
+    {
+      "fieldname": "gst",
+      "fieldtype": "Currency",
+      "label": "GST",
+      "read_only": 1
+    },
+    {
+      "fieldname": "cgst",
+      "fieldtype": "Currency",
+      "label": "CGST",
+      "read_only": 1
+    },
+    {
+      "fieldname": "sgst",
+      "fieldtype": "Currency",
+      "label": "SGST",
+      "read_only": 1
+    },
+    {
+      "fieldname": "igst",
+      "fieldtype": "Currency",
+      "label": "IGST",
+      "read_only": 1
+    },
+    {
+      "fieldname": "gross",
+      "fieldtype": "Currency",
+      "in_list_view": 1,
+      "label": "Gross",
+      "read_only": 1
+    },
+    {
+      "default": "0",
+      "fieldname": "collected",
+      "fieldtype": "Currency",
+      "in_list_view": 1,
+      "label": "Collected",
+      "read_only": 1
+    },
+    {
+      "fieldname": "sales_invoice",
+      "fieldtype": "Link",
+      "label": "Sales Invoice",
+      "options": "Sales Invoice",
+      "read_only": 1
+    },
+    {
+      "fieldname": "payment_entry",
+      "fieldtype": "Link",
+      "label": "Payment Entry",
+      "options": "Payment Entry",
+      "read_only": 1
+    }
+  ],
+  "istable": 1,
+  "links": [],
+  "modified": "2026-08-24 18:00:00",
+  "module": "Booking",
+  "name": "Atlas Booking Payment Step",
+  "owner": "Administrator",
+  "permissions": [],
+  "sort_field": "idx",
+  "sort_order": "ASC",
+  "track_changes": 0
+}

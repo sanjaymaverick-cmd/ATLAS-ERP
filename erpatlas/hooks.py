@@ -22,7 +22,9 @@ add_to_apps_screen = [
 ]
 
 # Mixins on native DocTypes — v16+. Do not use override_doctype_class.
-extend_doctype_class = {}
+extend_doctype_class = {
+	"Sales Order": "erpatlas.books.sales_order.AtlasSalesOrderMixin",
+}
 
 
 scheduler_events = {
@@ -45,10 +47,14 @@ permission_query_conditions = {
 	"Atlas Unit Hold": "erpatlas.property_inventory.permissions.hold_query",
 	"Atlas Channel Company": "erpatlas.property_inventory.permissions.channel_company_query",
 	"Atlas Approval": "erpatlas.approvals.permissions.approval_query",
+	"Atlas Booking": "erpatlas.booking.permissions.booking_query",
+	"Atlas Commission": "erpatlas.booking.permissions.commission_query",
 }
 
 has_permission = {
 	"Atlas Unit": "erpatlas.property_inventory.permissions.has_unit_permission",
 	"Atlas Unit Hold": "erpatlas.property_inventory.permissions.has_hold_permission",
 	"Atlas Channel Company": "erpatlas.property_inventory.permissions.has_channel_company_permission",
+	"Atlas Booking": "erpatlas.booking.permissions.has_booking_permission",
+	"Atlas Commission": "erpatlas.booking.permissions.has_commission_permission",
 }
