@@ -1,0 +1,24 @@
+{
+  "actions": [],
+  "autoname": "naming_series:",
+  "doctype": "DocType",
+  "engine": "InnoDB",
+  "field_order": ["naming_series", "template_name", "category", "language", "status", "body", "trigger"],
+  "fields": [
+    {"fieldname": "naming_series", "fieldtype": "Select", "hidden": 1, "options": "AWA-.#####"},
+    {"fieldname": "template_name", "fieldtype": "Data", "in_list_view": 1, "label": "Name", "reqd": 1},
+    {"fieldname": "category", "fieldtype": "Select", "options": "utility\nmarketing", "label": "Category"},
+    {"fieldname": "language", "fieldtype": "Select", "options": "en\nhi", "default": "en", "label": "Language"},
+    {"default": "draft", "fieldname": "status", "fieldtype": "Select", "options": "draft\npending\napproved\npaused", "label": "Status"},
+    {"fieldname": "body", "fieldtype": "Small Text", "label": "Body", "reqd": 1},
+    {"fieldname": "trigger", "fieldtype": "Select", "options": "visit_scheduled\nvisit_reminder\npayment_due\ndocument_request\nconstruction\nbrochure\nchannel_broadcast\nlaunch", "label": "Trigger"}
+  ],
+  "module": "Communications",
+  "name": "Atlas Wa Template",
+  "naming_rule": "By \"Naming Series\" field",
+  "owner": "Administrator",
+  "permissions": [
+    {"create": 1, "delete": 1, "read": 1, "write": 1, "role": "Atlas Developer Admin"},
+    {"create": 1, "read": 1, "write": 1, "role": "Atlas Sales Manager"}
+  ]
+}

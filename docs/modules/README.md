@@ -16,7 +16,11 @@ Implementable DocType designs. High-level map is locked in `docs/locked-structur
 | Quotations | [quotations.md](quotations.md) | Lowest Active-vendor quote may become a PO |
 | Documents | [documents.md](documents.md) | Four-eyes + single-use Export Grant |
 | Site | [site.md](site.md) | Diary one-seal-per-device-day; inspection fail raises NCR |
-| Change Control | Atlas Change Item | NCR from inspection. RFI / VO still thin |
+| Change Control | Atlas Change Item | NCR from inspection; close NCR; VO amount → Approval kind Change |
+| Controls | Atlas Material | Cannot issue more than received |
+| Land & Legal | Atlas Obligation | RERA/labour/insurance/tax filings. Not 70/30 bank split |
+| Organization | Owner Decision, Assistant Note | Assistant draft-only |
+| Communications | Atlas Wa Template | Registry only — no send |
 
 Platform: ERPNext **v16** — [ADR 0008](../adr/0008-erpnext-v16.md), [research/01](../research/01-erpnext-v16.md).
 

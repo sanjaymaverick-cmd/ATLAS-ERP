@@ -9,4 +9,8 @@ Documents
 Site
 Change Control
 Quotations
+Controls
+Land Legal
+Organization
+Communications
 Command

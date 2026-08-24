@@ -74,15 +74,19 @@ One system: custom Frappe app `erpatlas` on ERPNext version-16. Full Atlas-3 fea
 - Site: diary seal + inspections; fail raises NCR (Change Item)
 - Command P3: KPI snapshot + portfolio heat map
 - Quotations: lowest Active-vendor quote may become a PO
+- Controls: materials receive/issue
+- Land: statutory obligations (RERA filing dates, not 70/30 split)
+- Organization: owner decisions; assistant draft-only
+- Communications: WhatsApp template registry (no send)
 - Research docs 01–06; docs/modules/command.md, booking.md
 
 ## Next implementation slice (unless the user names another)
 
 Prefer one of:
 
-1. Controls (materials)
-2. Change Control RFI / VO (NCR already from inspection)
-3. Land & Legal
+1. Command P4 forecasts (read-only)
+2. Capital funding sanctions
+3. Audit event log (if not covered by track_changes)
 
 Do not implement CatBoost, WhatsApp, Tally import, or RERA 70/30 unless named.
 
