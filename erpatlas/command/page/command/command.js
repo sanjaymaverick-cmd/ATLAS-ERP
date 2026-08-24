@@ -38,6 +38,14 @@ atlas.CommandBoard = class CommandBoard {
 			change: () => this.refresh(),
 		});
 		this.page.set_primary_action(__("Refresh"), () => this.refresh());
+		this.page.set_secondary_action(__("Board pack PDF"), () => this.download_pack());
+	}
+
+	download_pack() {
+		open_url_post("/api/method/erpatlas.command.board.download_boardpack", {
+			company: this.company_field.get_value(),
+			project: this.project_field.get_value(),
+		});
 	}
 
 	refresh() {

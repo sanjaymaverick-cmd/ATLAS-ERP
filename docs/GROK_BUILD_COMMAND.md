@@ -63,7 +63,7 @@ Wire collections MTD, booking value, plan vs actual from Booking / SO / PE. If B
 
 ### P3–P5
 
-KPI Snapshot DocType, heat map, forecasts, board PDF — only after P0–P2 solid. Predictions store as-of + model id; UI read-only.
+KPI Snapshot DocType, heat map, forecasts, board PDF — only after P0–P2 solid. Predictions store as-of + model id; UI read-only. P5 board pack is HTML from Command JSON + Frappe `get_pdf`; it does not write Unit / PE / Approval.
 
 ## Explicit non-goals for this session
 
@@ -78,5 +78,5 @@ KPI Snapshot DocType, heat map, forecasts, board PDF — only after P0–P2 soli
 - Commit messages: what + why
 - PR against main describing P0 scope and screenshots/notes if Desk not available in CI
 
-P0–P4 are on `main`. When the user says go, implement **Command P5** (board-pack PDF) or the next domain slice named. Forecasts stay read-only. Do not invent Booking.
+P0–P5 are on `main` (board-pack PDF from Command JSON). When the user says go, implement the next domain slice named. Forecasts and the pack stay read-only. Do not invent Booking.
 ```

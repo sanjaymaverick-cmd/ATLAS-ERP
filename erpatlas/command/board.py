@@ -116,6 +116,20 @@ def get_command(company: str | None = None, project: str | None = None) -> dict:
 	return payload
 
 
+@frappe.whitelist()
+def download_boardpack(company: str | None = None, project: str | None = None) -> None:
+	"""PDF of the live Command JSON. Read-only — never writes Unit, PE, or Approval."""
+	from frappe.utils.pdf import get_pdf
+
+	from erpatlas.command.boardpack import render_boardpack
+
+	payload = get_command(company, project)
+	pack = render_boardpack(payload, as_of=str(today()))
+	frappe.local.response.filename = pack["filename"]
+	frappe.local.response.filecontent = get_pdf(pack["html"])
+	frappe.local.response.type = "pdf"
+
+
 def command_thresholds() -> dict:
 	out = dict(DEFAULT_THRESHOLDS)
 	if not frappe.db.exists("DocType", "Atlas Settings"):
