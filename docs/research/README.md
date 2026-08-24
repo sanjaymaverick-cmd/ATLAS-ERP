@@ -9,5 +9,7 @@ Product source remains Atlas-3. These notes map Atlas-3 money and isolation rule
 | 03 | [Commission accounts + TDS](03-commission-tds.md) | Contract proposed |
 | 04 | [Concurrent unit lock on a bench](04-concurrent-lock.md) | CAS already in code; bench protocol open |
 | 05 | [Channel isolation fixtures](05-channel-isolation-fixtures.md) | Query conditions exist; fixtures not shipped |
+| 06 | [Payment Schedule GST logic](06-payment-schedule-gst.md) | Pure math + tests. Adapter later |
+
 
 Rates and GST/TDS thresholds are **configuration for a CA**, not code constants. Confirm before go-live.

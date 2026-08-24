@@ -65,11 +65,8 @@ Research snapshot 2026, **not legal advice**:
 | Commercial / shop | Different (often 18% with ITC — confirm) | Unit.kind `Shop` uses a different tax category |
 | Land | Often excluded / deemed; current 5% composition-style is usually on consideration | Do not invent a land split in code; put it in the tax template |
 
-**Implementation:**
+**GST posting and step math:** locked in [06 — Payment Schedule GST logic](06-payment-schedule-gst.md). Default under-construction: **GST on receipt** (Sales Invoice then Payment Entry). Naked SO advance is the CA override / post-OC path.
 
-- Company default: India GST accounts from ERPNext India compliance.
-- `Atlas Booking.tax_category` → ERPNext Tax Category / Sales Taxes and Charges Template.
-- Advances: GST on advances for under-construction is a CA call. Default **v1**: Payment Entry is **advance against SO** (liability), GST is computed when the **Sales Invoice** for that slice is raised (demand letter). If the CA requires GST on every receipt, raise a partial Sales Invoice per collected step instead of a naked advance.
 
 Flag on Project: `gst_on_under_construction` (Check). When OC is filed on Handover, stop using the construction GST template for remaining invoices.
 
