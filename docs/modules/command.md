@@ -117,6 +117,8 @@ Start with **deterministic thresholds** in Atlas Settings. ML scores may layer l
 
 P0 does not require Booking. P1+ does.
 
+**P1 blockers on this tree:** Atlas Booking is not on `research/money-isolation-v16`. It lives on `feature/atlas-booking` ([PR #3](https://github.com/sanjaymaverick-cmd/ATLAS-ERP/pull/3)). Do not invent Booking here. P1 money KPIs wait for that merge.
+
 ## Out of scope for Command code
 
 - Rebuilding Atlas Booking, Handover, or CatBoost inside this page

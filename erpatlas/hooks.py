@@ -17,7 +17,7 @@ add_to_apps_screen = [
 		"name": "erpatlas",
 		"logo": "/assets/erpatlas/logo.png",
 		"title": "ERPATLAS",
-		"route": "/app/erpatlas",
+		"route": "/app/command",
 	}
 ]
 

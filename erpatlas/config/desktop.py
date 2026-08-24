@@ -13,4 +13,9 @@ def get_data():
 			"type": "module",
 			"label": _("Waiting for a yes"),
 		},
+		{
+			"module_name": "Command",
+			"type": "module",
+			"label": _("Command"),
+		},
 	]

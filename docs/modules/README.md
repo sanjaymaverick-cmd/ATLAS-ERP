@@ -6,7 +6,7 @@ Implementable DocType designs. High-level map is locked in `docs/locked-structur
 |---|---|---|
 | Property Inventory | [property-inventory.md](property-inventory.md) | Scaffolded |
 | Approvals | [approvals.md](approvals.md) | Scaffolded |
-| Command (CEO) | [command.md](command.md) | Design locked; P0 next |
+| Command (CEO) | [command.md](command.md) | P0 scaffolded (page + live counts + exception list). P1 blocked on Booking merge |
 | Channel & Partner | — | Channel Company row only (isolation). Fixtures: [research/05](../research/05-channel-isolation-fixtures.md) |
 | Booking | — | **Next domain slice.** Contract: [research/02](../research/02-booking-sales-order-gst.md) |
 | Commission (books) | — | Contract: [research/03](../research/03-commission-tds.md) |

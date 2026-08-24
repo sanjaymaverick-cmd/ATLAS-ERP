@@ -1,0 +1,19 @@
+{
+  "content": null,
+  "creation": "2026-08-24 20:00:00",
+  "docstatus": 0,
+  "doctype": "Page",
+  "idx": 0,
+  "modified": "2026-08-24 20:00:00",
+  "module": "Command",
+  "name": "command",
+  "owner": "Administrator",
+  "page_name": "command",
+  "roles": [
+    {"role": "Atlas Developer Admin"},
+    {"role": "Atlas Project Director"}
+  ],
+  "standard": "Yes",
+  "system_page": 0,
+  "title": "Command"
+}

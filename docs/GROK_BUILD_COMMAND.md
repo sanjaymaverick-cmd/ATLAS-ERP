@@ -78,5 +78,5 @@ KPI Snapshot DocType, heat map, forecasts, board PDF — only after P0–P2 soli
 - Commit messages: what + why
 - PR against main describing P0 scope and screenshots/notes if Desk not available in CI
 
-When the user says go, implement **P0 only** unless they name a later phase.
+P0 is scaffolded on `feature/command-p0`. When the user says go, implement **P0 only** if that branch is missing; otherwise start **P1 only after Atlas Booking is in the tree**. Do not invent Booking.
 ```
