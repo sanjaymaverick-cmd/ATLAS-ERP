@@ -12,7 +12,8 @@ Implementable DocType designs. High-level map is locked in `docs/locked-structur
 | Booking | [booking.md](booking.md) | Scaffolded — Active → SO, collect, commission Accrued |
 | Handover | [handover.md](handover.md) | Occupancy Certificate + snags + full collection → Sold |
 | Commission (books) | [research/03](../research/03-commission-tds.md) | Accrual JE (if accounts set); PI after Approved; TDS via ERPNext Tax Withholding. No PE from Approvals |
-| Commercial | Vendor Active + GSTIN before PO | Scaffolded. RFQ/PO flow not started |
+| Commercial | Vendor Active + GSTIN before PO | Scaffolded |
+| Quotations | [quotations.md](quotations.md) | Lowest Active-vendor quote may become a PO |
 | Documents | [documents.md](documents.md) | Four-eyes + single-use Export Grant |
 | Site | [site.md](site.md) | Diary one-seal-per-device-day; inspection fail raises NCR |
 | Change Control | Atlas Change Item | NCR from inspection. RFI / VO still thin |

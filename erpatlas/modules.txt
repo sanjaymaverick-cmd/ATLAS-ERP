@@ -8,4 +8,5 @@ Pipeline
 Documents
 Site
 Change Control
+Quotations
 Command

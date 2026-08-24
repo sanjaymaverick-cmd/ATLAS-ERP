@@ -49,6 +49,11 @@ def get_data():
 			"label": _("Failed work"),
 		},
 		{
+			"module_name": "Quotations",
+			"type": "module",
+			"label": _("Quotes"),
+		},
+		{
 			"module_name": "Command",
 			"type": "module",
 			"label": _("Command"),
