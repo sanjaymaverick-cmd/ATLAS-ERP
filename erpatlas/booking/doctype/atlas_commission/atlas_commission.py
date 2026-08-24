@@ -34,3 +34,10 @@ def send_to_approvals(name: str):
 		context="Accrued only. Approval does not create a Payment Entry.",
 	)
 	return {"approval": approval, "status": PENDING}
+
+
+@frappe.whitelist()
+def raise_purchase_invoice(name: str):
+	from erpatlas.books.commission_adapter import raise_purchase_invoice as raise_pi
+
+	return raise_pi(name)

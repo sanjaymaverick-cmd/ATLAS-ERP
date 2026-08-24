@@ -5,7 +5,7 @@
   "creation": "2026-08-24 16:00:00",
   "doctype": "DocType",
   "engine": "InnoDB",
-  "field_order": ["company_name", "city", "gstin", "status", "rate"],
+  "field_order": ["company_name", "city", "gstin", "status", "rate", "supplier"],
   "fields": [
     {
       "fieldname": "company_name",
@@ -42,6 +42,12 @@
       "fieldname": "rate",
       "fieldtype": "Percent",
       "label": "Commission rate"
+    },
+    {
+      "fieldname": "supplier",
+      "fieldtype": "Link",
+      "label": "Supplier",
+      "options": "Supplier"
     }
   ],
   "index_web_pages_for_search": 1,

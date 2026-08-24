@@ -10,7 +10,7 @@ Implementable DocType designs. High-level map is locked in `docs/locked-structur
 | Channel & Partner | [channel.md](channel.md) | Daily report gate + Role fixtures. User Permission still site data |
 | Booking | [booking.md](booking.md) | Scaffolded — Active → SO, collect, commission Accrued |
 | Handover | [handover.md](handover.md) | Occupancy Certificate + snags + full collection → Sold |
-| Commission (books) | — | Accrual row on Booking. JE / TDS PI still [research/03](../research/03-commission-tds.md) |
+| Commission (books) | [research/03](../research/03-commission-tds.md) | Accrual JE (if accounts set); PI after Approved; TDS via ERPNext Tax Withholding. No PE from Approvals |
 | Documents / Commercial / Site / … | — | not started |
 
 Platform: ERPNext **v16** — [ADR 0008](../adr/0008-erpnext-v16.md), [research/01](../research/01-erpnext-v16.md).
